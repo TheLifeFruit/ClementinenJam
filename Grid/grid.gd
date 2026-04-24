@@ -7,7 +7,6 @@ const PANEL = preload("uid://djf3bkxpbavi6")
 var grid_data = GridData.new()
 
 
-
 func _ready() -> void:
 	grid_data.generate_new_grid(Vector2i(50,50))
 	populate_grid(grid_data)
@@ -34,4 +33,4 @@ func populate_grid(grid_data: GridData) -> void:
 		
 		if panel_data:
 			panel.set_panel_data(panel_data)
-			panel.show_pos()
+			panel.update_visual()
