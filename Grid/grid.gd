@@ -41,8 +41,8 @@ func populate_display_grid() -> void:
 	for child in grid.get_children():
 		child.queue_free()
 	
-	for x in GameData.grid_height:
-		for y in GameData.grid_width:
+	for y in GameData.grid_height:
+		for x in GameData.grid_width:
 			var panel = PANEL.instantiate()
 			grid.add_child(panel)
 			grid_panel_objects[Vector2i(x,y)] = panel
