@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://bcpaeix0ct3d7"]
 
+[ext_resource type="PackedScene" uid="uid://duq64anvol0n3" path="res://Grid/grid.tscn" id="1_f3sb7"]
+
 [node name="World" type="Node2D" unique_id=970723892]
+
+[node name="PanelContainer" parent="." unique_id=943626468 instance=ExtResource("1_f3sb7")]
