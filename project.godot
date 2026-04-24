@@ -13,10 +13,13 @@ config_version=5
 config/name="Jam"
 run/main_scene="uid://bcpaeix0ct3d7"
 config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="res://icon.svg"
 
 [autoload]
 
 GameData="*uid://b5ej376hph0m8"
+Clock="*uid://b2jja37or4veg"
+Monsterspawner="*uid://bwel2qs87yg2o"
 
 [display]
 

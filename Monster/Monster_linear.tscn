@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dpwwqqcyn7la0"]
+
+[ext_resource type="Texture2D" uid="uid://c3sh8gsnj5y30" path="res://images/eval.png" id="1_m1pgs"]
+[ext_resource type="Script" uid="uid://ty5xihkwq6y5" path="res://Monster/monster_linear.gd" id="2_uv4c4"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1257177468]
+texture = ExtResource("1_m1pgs")
+script = ExtResource("2_uv4c4")

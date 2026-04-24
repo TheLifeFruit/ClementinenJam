@@ -1,0 +1,41 @@
+[gd_scene format=4 uid="uid://hlrvp6mm1r2"]
+
+[ext_resource type="Texture2D" uid="uid://b87d1sc1u4256" path="res://images/rect9.png" id="1_572si"]
+[ext_resource type="Script" uid="uid://wrmdefe0vapl" path="res://mapgen.gd" id="2_81cy1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sfo1i"]
+texture = ExtResource("1_572si")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_mqdlf"]
+tile_size = Vector2i(64, 64)
+terrain_set_0/mode = 1
+sources/0 = SubResource("TileSetAtlasSource_sfo1i")
+
+[node name="Node2D" type="Node2D" unique_id=137791384]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2060527328]
+tile_map_data = PackedByteArray("AAAAAP//AAABAAAAAAABAP//AAACAAAAAAABAAAAAAACAAEAAAABAAEAAAACAAEAAAACAAEAAAACAAEAAAACAAAAAAAEAAIAAAACAP//AAAFAAEAAAADAP//AAAFAAEAAAADAAAAAAAGAAIAAAADAAEAAAABAAEAAAAEAAEAAAABAAEAAAAEAAAAAAABAAEAAAACAP7/AAAFAAEAAAACAP3/AAAFAAEAAAACAPz/AAAFAAEAAAA=")
+tile_set = SubResource("TileSet_mqdlf")
+script = ExtResource("2_81cy1")
+black_tile_atlas_coord = Vector2i(5, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="TileMapLayer" unique_id=531135906]

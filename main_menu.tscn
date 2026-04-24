@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dhpvvdb6brvy6"]
+
+[sub_resource type="Theme" id="Theme_rhts7"]
+
+[node name="Control" type="Control" unique_id=1241883713]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1032812622]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_right = 119.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1272465025]
+layout_mode = 2
+
+[node name="Highscore" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1764021975]
+layout_mode = 2
+theme = SubResource("Theme_rhts7")
+text = "Highscore"
+
+[node name="Highscore_num" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1548938976]
+layout_mode = 2
+text = "3455"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=599136287]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1491327179]
+layout_mode = 2
+text = "Score: "
+
+[node name="Score_num" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=160989426]
+layout_mode = 2
+text = "120"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=941156875]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Options" type="Button" parent="HBoxContainer" unique_id=1026153067]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Option"
+
+[node name="Play" type="Button" parent="HBoxContainer" unique_id=1151775107]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play"
+
+[node name="Quit" type="Button" parent="HBoxContainer" unique_id=1204601080]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
