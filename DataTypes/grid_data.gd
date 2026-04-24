@@ -19,5 +19,6 @@ func generate_new_grid(size: Vector2i) -> void:
 	for x in size.x:
 		for y in size.y:
 			var panel_data = PanelData.new()
+			panel_data.grid_pos = Vector2i(x, y)
 			panel_data.update_state(randi() % 2)
 			panel_grid[Vector2i(x,y)] = panel_data

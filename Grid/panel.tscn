@@ -16,3 +16,8 @@ script = ExtResource("1_y4mqa")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1433075683]
 layout_mode = 2
 color = Color(0, 0, 0, 1)
+
+[node name="PosLabel" type="Label" parent="." unique_id=190285296]
+layout_mode = 2
+size_flags_vertical = 0
+text = "x, y"

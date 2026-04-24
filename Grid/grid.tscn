@@ -10,4 +10,4 @@ layout_mode = 2
 
 [node name="Grid" type="GridContainer" parent="MarginContainer" unique_id=864178152]
 layout_mode = 2
-columns = 30
+columns = 50
