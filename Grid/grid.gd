@@ -30,9 +30,9 @@ func update_display() -> void:
 		
 		
 		if panel_data.get_panel_state() == 1:
-			grid_panel_objects[pos].update_visuals(Color.WHITE, pos, Color.BLACK)
+			grid_panel_objects[pos].update_visuals(Color.WHITE, pos + GameData.player_pos, Color.BLACK)
 		else:
-			grid_panel_objects[pos].update_visuals(Color.BLACK, pos, Color.WHITE)
+			grid_panel_objects[pos].update_visuals(Color.BLACK, pos + GameData.player_pos, Color.WHITE)
 		
 
 
@@ -41,8 +41,8 @@ func populate_display_grid() -> void:
 	for child in grid.get_children():
 		child.queue_free()
 	
-	for x in GameData.grid_width:
-		for y in GameData.grid_height:
+	for x in GameData.grid_height:
+		for y in GameData.grid_width:
 			var panel = PANEL.instantiate()
 			grid.add_child(panel)
 			grid_panel_objects[Vector2i(x,y)] = panel
