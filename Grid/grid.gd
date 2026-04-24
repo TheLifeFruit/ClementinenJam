@@ -8,7 +8,7 @@ var grid_data = GridData.new()
 
 
 func _ready() -> void:
-	grid_data.generate_new_grid(Vector2i(37,17))
+	grid_data.generate_new_grid(Vector2i(9,17))
 	populate_grid(grid_data)
 	
 	set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -33,6 +33,9 @@ func populate_grid(grid_data: GridData) -> void:
 		
 		var panel = PANEL.instantiate()
 		grid.add_child(panel)
+		
+		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		# Subscriptions
 		
 		

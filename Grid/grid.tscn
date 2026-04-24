@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ddmrx6xwoo0j0" path="res://Grid/grid.gd" id="1_ebq2e"]
 
 [node name="PanelContainer" type="PanelContainer" unique_id=943626468]
-size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_ebq2e")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=91279859]
@@ -12,4 +12,4 @@ layout_mode = 2
 
 [node name="Grid" type="GridContainer" parent="MarginContainer" unique_id=864178152]
 layout_mode = 2
-columns = 37
+columns = 17

@@ -21,6 +21,7 @@ GameData="*uid://b5ej376hph0m8"
 [display]
 
 window/size/always_on_top=true
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [physics]
