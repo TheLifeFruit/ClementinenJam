@@ -29,3 +29,5 @@ text = "x, y"
 
 [node name="DisplayLabel" type="Label" parent="." unique_id=436192077]
 layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

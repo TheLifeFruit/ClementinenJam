@@ -20,9 +20,9 @@ func _ready() -> void:
 
 
 func update_display() -> void:
-	for pos in grid_panel_objects:
+	for display_pos in grid_panel_objects:
 		
-		var panel_data = GameData.grid_data.get_panel_data(pos + Vector2i(GameData.player_pos.x, -GameData.player_pos.y))
+		var panel_data = GameData.grid_data.get_panel_data(Vector2i(display_pos.x, display_pos.y) + Vector2i(GameData.player_pos.x, GameData.player_pos.y))
 		
 		if (not panel_data):
 			printerr("Invalid Data")
@@ -30,10 +30,18 @@ func update_display() -> void:
 		
 		
 		if panel_data.get_panel_state() == 1:
-			grid_panel_objects[pos].update_visuals(Color.WHITE, pos + GameData.player_pos, Color.BLACK)
+			grid_panel_objects[display_pos].update_visuals(Color.WHITE, Vector2i(display_pos.x, display_pos.y) + Vector2i(GameData.player_pos.x, GameData.player_pos.y) , Color.BLACK)
 		else:
-			grid_panel_objects[pos].update_visuals(Color.BLACK, pos + GameData.player_pos, Color.WHITE)
+			grid_panel_objects[display_pos].update_visuals(Color.BLACK, Vector2i(display_pos.x, display_pos.y) + Vector2i(GameData.player_pos.x, GameData.player_pos.y) , Color.WHITE)
 		
+
+func update_panel_visuals(grid_pos: Vector2i) -> void:
+	if is_visible_on_screen(grid_pos):
+		grid_panel_objects[grid_pos].update_visuals()
+
+
+func is_visible_on_screen(grid_pos: Vector2i) -> bool:
+	return not (abs(GameData.player_pos.x - grid_pos.x) >  8 or abs(GameData.player_pos.y - grid_pos.y) > 4)
 
 
 
@@ -41,7 +49,7 @@ func populate_display_grid() -> void:
 	for child in grid.get_children():
 		child.queue_free()
 	
-	for y in GameData.grid_height:
+	for y in range(8, -1, -1):
 		for x in GameData.grid_width:
 			var panel = PANEL.instantiate()
 			grid.add_child(panel)

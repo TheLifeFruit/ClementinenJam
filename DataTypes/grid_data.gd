@@ -25,7 +25,8 @@ func change_panel_data(grid_pos: Vector2i, state: int) -> void:
 		panel_data.grid_pos = grid_pos
 		panel_data.state = state
 		panel_grid[grid_pos] = panel_data
-		SignalManager.update_visuals.emit()
+		SignalManager.update_panel_visual.emit(grid_pos)
+		
 		return
 	
 	panel_grid[grid_pos].update_state(state)

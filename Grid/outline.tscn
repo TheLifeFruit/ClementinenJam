@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://crlwfmts8tlju"]
+
+[ext_resource type="Script" uid="uid://cni0x2pndglam" path="res://outline.gd" id="1_3ldgr"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_cegk5"]
+
+[node name="Outline" type="Node2D" unique_id=1750543578]
+script = ExtResource("1_3ldgr")
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="." unique_id=1232647196]
+multimesh = SubResource("MultiMesh_cegk5")

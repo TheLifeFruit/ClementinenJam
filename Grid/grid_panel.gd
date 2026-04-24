@@ -18,3 +18,8 @@ func update_visuals(panel_color: Color, grid_pos: Vector2i, text_color: Color = 
 	var pos_text: String = str("(" , grid_pos.x , ", ", grid_pos.y, ")")
 	pos_label.text = pos_text
 	pos_label.add_theme_color_override("font_color", text_color)
+
+
+
+func _on_mouse_entered() -> void:
+	printt(display_pos)
