@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 GameData="*uid://b5ej376hph0m8"
+SignalManager="*uid://comj0vpmx50yj"
 
 [display]
 

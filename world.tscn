@@ -6,4 +6,4 @@
 [node name="World" type="Node2D" unique_id=970723892]
 script = ExtResource("1_fj7yv")
 
-[node name="PanelContainer" parent="." unique_id=943626468 instance=ExtResource("1_f3sb7")]
+[node name="GRID" parent="." unique_id=943626468 instance=ExtResource("1_f3sb7")]

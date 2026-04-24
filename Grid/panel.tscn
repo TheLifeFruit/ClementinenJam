@@ -26,3 +26,6 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "x, y"
+
+[node name="DisplayLabel" type="Label" parent="." unique_id=436192077]
+layout_mode = 2

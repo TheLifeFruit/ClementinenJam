@@ -1,26 +1,20 @@
 extends PanelContainer
-@onready var panel_color: ColorRect = $ColorRect
-@onready var label: Label = $PosLabel
-
-@export var panel_data: PanelData = PanelData.new()
-
+@onready var panel: ColorRect = $ColorRect
+@onready var pos_label: Label = $PosLabel
+@onready var display_label: Label = $DisplayLabel
 
 
-func set_panel_data(new_panel_data: PanelData) -> void:
-	panel_data = new_panel_data
+var display_pos: Vector2i
 
 
-func update_visual() -> void:
-	show_pos()
-	if panel_data.get_panel_state() == 1:
-		panel_color.color = Color.WHITE
+
+func update_visuals(panel_color: Color, pos: Vector2i, text_color: Color = Color.BLACK) -> void:
+	panel.color = panel_color
 	
-
-
-func show_pos() -> void:
-	var display_text: String = str("(" , panel_data.grid_pos.x , ", ", panel_data.grid_pos.y, ")")
-	label.text = display_text
-	if panel_data.get_panel_state() == 1:
-		label.add_theme_color_override("font_color", Color.BLACK)
-	else:
-		label.add_theme_color_override("font_color", Color.WHITE)
+	var display_text: String = str("(" , display_pos.x , ", ", display_pos.y, ")")
+	display_label.text = display_text
+	display_label.add_theme_color_override("font_color", text_color)
+	
+	var pos_text: String = str("(" , pos.x , ", ", pos.y, ")")
+	pos_label.text = pos_text
+	pos_label.add_theme_color_override("font_color", text_color)
