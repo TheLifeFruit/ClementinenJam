@@ -11,24 +11,25 @@ func _ready() -> void:
 	direction = randi_range(0,3)
 	var pos =  randi_range(-spawn_width, spawn_width)
 	if direction == 0:
-		spawn_point = GameData.player_pos + [OUT_X,pos] 
+		spawn_point = GameData.player_pos + Vector2i(OUT_X,pos)
 	elif direction == 1:
-		spawn_point = GameData.player_pos + [-OUT_X,pos]
+		spawn_point = GameData.player_pos + Vector2i(-OUT_X,pos)
 	elif direction == 2:
-		spawn_point = GameData.player_pos + [pos,OUT_Y]
+		spawn_point = GameData.player_pos + Vector2i(pos,OUT_Y)
 	else:
-		spawn_point = GameData.player_pos + [pos,-OUT_Y]
+		spawn_point = GameData.player_pos + Vector2i(pos,-OUT_Y)
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_tick():
-	var dif = GameData.player_pos-spawn_point
+	var dif: Vector2i = GameData.player_pos-spawn_point
 	if abs(dif[0]) > abs(dif[1]):
 		spawn_point[0] += sign(dif[0])*1
 	else:
 		spawn_point[1] += sign(dif[1])*1
-	
+	GameData.grid_data.change_panel_data(spawn_point,1)
+	global_position = GameData.go_to(spawn_point)
 	
 	
 	
