@@ -8,7 +8,7 @@ var grid_data = GridData.new()
 
 
 func _ready() -> void:
-	grid_data.generate_new_grid(Vector2i(9,17))
+	grid_data.generate_new_grid(Vector2i(GameData.grid_width,GameData.grid_height))
 	populate_grid(grid_data)
 	
 	set_anchors_preset(Control.PRESET_FULL_RECT)
