@@ -6,6 +6,7 @@ var spawn_point = []
 var OUT_X = 0
 var OUT_Y = 0
 # Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	OUT_X = Monsterspawner.OUT_X
 	OUT_Y = Monsterspawner.OUT_Y
@@ -19,8 +20,8 @@ func _ready() -> void:
 	elif direction == 2:
 		spawn_point = GameData.player_pos + Vector2i(pos,OUT_Y)
 	else:
-		spawn_point = GameData.player_pos + Vector2i(pos,-OUT_Y)
 
+		spawn_point = GameData.player_pos + Vector2i(pos,-OUT_Y)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
