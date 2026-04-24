@@ -1,6 +1,6 @@
 extends Control
 
-const PANEL = preload("uid://djf3bkxpbavi6")
+const PANEL = preload("res://Grid/panel.tscn")
 
 @onready var grid: GridContainer = $MarginContainer/Grid
 
