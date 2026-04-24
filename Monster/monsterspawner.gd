@@ -1,12 +1,12 @@
 extends Node
 
-const MONSTER_LIN = preload("res://Monster/Monster_linear.tscn")
-const MONSTER_JUMPER =  preload("res://Monster/Monster_jumper.tscn")
+#const MONSTER_LIN = preload("res://Monster/Monster_linear.tscn")
+#const MONSTER_JUMPER =  preload("res://Monster/Monster_jumper.tscn")
 
 const OUT_X = 10
 const OUT_Y = 10
 
-
+'''
 func _ready() -> void:
 	# Connect to the global tick signal
 	Clock.tick.connect(_on_tick)
@@ -19,3 +19,4 @@ func _on_tick() -> void:
 		add_child(moster_jumper)
 		add_child(monster_lin)
 	
+'''

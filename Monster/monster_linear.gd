@@ -5,6 +5,9 @@ var spawn_width = 5
 var spawn_point = []
 const OUT_X = Monsterspawner.OUT_X
 const OUT_Y = Monsterspawner.OUT_Y
+
+
+'''
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Clock.tick.connect(_on_tick)
@@ -18,7 +21,7 @@ func _ready() -> void:
 		spawn_point = GameData.player_pos + [pos,OUT_Y]
 	else:
 		spawn_point = GameData.player_pos + [pos,-OUT_Y]
-
+'''
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

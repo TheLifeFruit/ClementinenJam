@@ -18,12 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameData="*uid://b5ej376hph0m8"
-<<<<<<< HEAD
-Clock="*uid://b2jja37or4veg"
-Monsterspawner="*uid://bwel2qs87yg2o"
-=======
 SignalManager="*uid://comj0vpmx50yj"
->>>>>>> 1dbb14c779c76ae379648d0011a6894ce39027e5
+Monsterspawner="*uid://bwel2qs87yg2o"
 
 [display]
 
