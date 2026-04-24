@@ -14,9 +14,14 @@ config/name="Jam"
 run/main_scene="uid://bcpaeix0ct3d7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+GameData="*uid://b5ej376hph0m8"
+
 [display]
 
 window/size/always_on_top=true
+window/stretch/aspect="expand"
 
 [physics]
 
