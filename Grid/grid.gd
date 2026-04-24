@@ -22,7 +22,7 @@ func _ready() -> void:
 func update_display() -> void:
 	for pos in grid_panel_objects:
 		
-		var panel_data = GameData.grid_data.get_panel_data(pos)
+		var panel_data = GameData.grid_data.get_panel_data(pos + Vector2i(GameData.player_pos.x, -GameData.player_pos.y))
 		
 		if (not panel_data):
 			printerr("Invalid Data")
