@@ -1,24 +1,25 @@
-[gd_scene format=3 uid="uid://opwd0hlaerrs"]
+[gd_scene format=3 uid="uid://v7rxxnrtb06r"]
 
-[ext_resource type="Script" uid="uid://dyu61ybu10vmq" path="res://Monster/spray.gd" id="1_the3v"]
+[ext_resource type="Script" uid="uid://dyu61ybu10vmq" path="res://Monster/spray.gd" id="1_widnf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x8ayh"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_the3v"]
 particle_flag_disable_z = true
 spread = 20.0
-initial_velocity_min = 94.68
-initial_velocity_max = 145.31999
+initial_velocity_min = 214.68
+initial_velocity_max = 265.32
 gravity = Vector3(0, 0, 0)
 damping_min = 170.00002
 damping_max = 310.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" unique_id=94177985]
+[node name="Spray" type="GPUParticles2D" unique_id=94177985]
 material = SubResource("CanvasItemMaterial_x8ayh")
 emitting = false
 one_shot = true
-explosiveness = 0.69
+speed_scale = 2.94
+explosiveness = 0.85
 randomness = 0.33
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_the3v")
-script = ExtResource("1_the3v")
+script = ExtResource("1_widnf")

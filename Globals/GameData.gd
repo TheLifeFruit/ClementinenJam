@@ -16,7 +16,7 @@ var player_grid: Dictionary = {} # Vec2i -> bool
 
 
 var player_currency: float = 10
-
+var paint_bombs: int = 1000
 
 
 var game_over_perc: float = 0.3
@@ -28,6 +28,16 @@ var game_over_perc: float = 0.3
 [START] General UTIL
 ----------------------------------------
 """
+func get_mouse_dir() -> float:
+	var center = get_viewport().get_visible_rect().size / 2
+	var mouse_pos = get_viewport().get_mouse_position()
+	
+	var direction_vector = center - mouse_pos
+	var direction_normalized = direction_vector.normalized()
+	
+	var angle = direction_vector.angle()
+	return angle + PI
+
 
 func generate_uuid_v4() -> String:
 	var crypto := Crypto.new()
@@ -119,11 +129,16 @@ func get_corrupted_player_panels() -> int:
 ----------------------------------------
 """
 
-func change_panel(grid_pos: Vector2i, state: int) -> void:
+func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
+	if dmg > 0:
+		if occupation_data.has(grid_pos):
+			occupation_data[grid_pos].remove()
 	if (state == 1 and not player_grid.has(grid_pos)):
 		return
 	grid_data.change_panel_state(grid_pos, state)
 	
+
+
 
 ## Use in combination with powerups
 func reset_player_field() -> void:

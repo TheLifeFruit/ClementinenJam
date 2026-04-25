@@ -37,8 +37,6 @@ func _on_tick():
 	else:
 		move( Vector2i(0,1))
 	
-
-	print(grid_pos)
 	
 	need_delete()
 	

@@ -27,7 +27,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_tick():
 	if Clock.current_tick % 3 == 0:
-		print(grid_pos,GameData.player_pos)
+		#print(grid_pos,GameData.player_pos)
 		
 		if total_moves >= 0:
 			var dif: Vector2i = GameData.player_pos-grid_pos

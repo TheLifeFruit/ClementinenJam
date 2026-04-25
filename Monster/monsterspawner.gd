@@ -15,15 +15,13 @@ func _ready() -> void:
 	# Connect to the global tick signal
 	Clock.tick.connect(_on_tick)
 	Clock.loaded.connect(power_up_spawn)
-	var monster_lin = MONSTER_PLAYER.instantiate()
-	add_child(monster_lin)
 	
 		
 
 func power_up_spawn(entity):
 	var grid_pos = GameData.player_grid.keys().pick_random()
 	if GameData.grid_data.get_panel_state(grid_pos) == 0:
-		print("Spawnd on black")
+		#print("Spawnd on black")
 		return
 	
 	var entity_inst = entity.instantiate()
