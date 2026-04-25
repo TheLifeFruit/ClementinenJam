@@ -17,3 +17,4 @@ res://Globals/SignalManager.gd
 res://ui.gd
 res://Monster/monster_jumper.gd
 res://Monster/monster_player.gd
+res://Globals/Clock.gd
