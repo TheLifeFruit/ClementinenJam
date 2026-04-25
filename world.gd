@@ -20,10 +20,10 @@ func _ready() -> void:
 	
 
 func cycle() -> void:
-	var amount = GameData.get_player_panels()
-	var clean = GameData.get_clean_player_panels()
-	var corrupted = amount - clean
-	var percentage_clean = clean / amount
+	var amount: float = GameData.get_player_panels()
+	var clean: float = GameData.get_clean_player_panels()
+	var corrupted: float = amount - clean
+	var percentage_clean: float = float(clean / amount)
 	
 	SignalManager.percentage_changed.emit(percentage_clean)
 	
