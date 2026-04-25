@@ -2,7 +2,7 @@ extends Sprite2D
 
 var direction = 0
 var spawn_width = 5
-var spawn_point = []
+var grid_pos = []
 var OUT_X = 0
 var OUT_Y = 0
 # Called when the node enters the scene tree for the first time.
@@ -14,34 +14,34 @@ func _ready() -> void:
 	direction = randi_range(0,3)
 	var pos =  randi_range(-spawn_width, spawn_width)
 	if direction == 0:
-		spawn_point = GameData.screen_pos + Vector2i(OUT_X,pos)
+		grid_pos = GameData.screen_pos + Vector2i(OUT_X,pos)
 	elif direction == 1:
-		spawn_point = GameData.screen_pos + Vector2i(-OUT_X,pos)
+		grid_pos = GameData.screen_pos + Vector2i(-OUT_X,pos)
 	elif direction == 2:
-		spawn_point = GameData.screen_pos + Vector2i(pos,OUT_Y)
+		grid_pos = GameData.screen_pos + Vector2i(pos,OUT_Y)
 	else:
 
-		spawn_point = GameData.screen_pos + Vector2i(pos,-OUT_Y)
+		grid_pos = GameData.screen_pos + Vector2i(pos,-OUT_Y)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_tick():
 	if Clock.current_tick % 3 == 0:
 		if direction == 0:
-			spawn_point += Vector2i(-4,0)
+			grid_pos += Vector2i(-4,0)
 		elif direction == 1:
-			spawn_point += Vector2i(4,0)
+			grid_pos += Vector2i(4,0)
 		elif direction == 2:
-			spawn_point += Vector2i(0,-4)
+			grid_pos += Vector2i(0,-4)
 		else:
-			spawn_point += Vector2i(0,4)
+			grid_pos += Vector2i(0,4)
 	# 3 auf 3 feld#
 	for i in range(3):
 		for j in  range(3):
-			var newvec = Vector2i(spawn_point[0] + i-1,spawn_point[1] + j-1)
+			var newvec = Vector2i(grid_pos[0] + i-1,grid_pos[1] + j-1)
 			GameData.grid_data.change_panel_state(newvec,0)
-	position = GameData.go_to(spawn_point)
+	position = GameData.go_to(grid_pos)
 	
-	if abs(spawn_point[0]-GameData.screen_pos[0]) > OUT_X*1.5 or abs(spawn_point[1]-GameData.screen_pos[1]) > OUT_Y*1.5:
+	if abs(grid_pos[0]-GameData.screen_pos[0]) > OUT_X*1.5 or abs(grid_pos[1]-GameData.screen_pos[1]) > OUT_Y*1.5:
 		self.queue_free()
 	
