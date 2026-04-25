@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cy3pnbopg6vvn"]
+
+[ext_resource type="Texture2D" uid="uid://c3sh8gsnj5y30" path="res://images/eval.png" id="1_olfu3"]
+[ext_resource type="Script" uid="uid://cwiweh8klvtcs" path="res://PowerUps/basic_lamp.gd" id="2_j00q2"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1820437679]
+texture = ExtResource("1_olfu3")
+script = ExtResource("2_j00q2")
