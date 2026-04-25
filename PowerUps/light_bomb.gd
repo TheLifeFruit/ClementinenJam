@@ -24,6 +24,7 @@ func check_onit():
 
 func process_modi():
 	if grid_pos == GameData.player_pos:
+		GameData.inventory["Bombe"] += 1
 		print("powerUp")
 		for i in range(3):
 			for j in range(3):

@@ -11,6 +11,7 @@ var rot: Array[float] = [0, PI/2, PI, -PI/2]
 
 
 func _ready() -> void:
+	SignalManager.game_over.connect(remove)
 	uuid = GameData.generate_uuid_v4()
 
 func remove() -> void:

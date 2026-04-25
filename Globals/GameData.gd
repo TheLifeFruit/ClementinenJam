@@ -13,7 +13,7 @@ var occupation_data: Dictionary = {} # Vec2i -> object
 var player_grid: Dictionary = {} # Vec2i -> bool
 
 
-
+var inventory: Dictionary = {"Bombe": 0,}
 
 var player_currency: float = 10
 var paint_bombs: int = 1000
