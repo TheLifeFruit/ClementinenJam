@@ -154,7 +154,6 @@ func get_hit_cells(origin: Vector2i, target_angle: float, range_dist: float, spr
 
 func remove() -> void:
 	print("PLAYER DMG?")
-	queue_free()
 
 func give_uuid() -> String:
 	return "playa"
