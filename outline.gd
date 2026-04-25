@@ -22,14 +22,13 @@ func create_single_edge_mesh(thickness: float) -> ArrayMesh:
 	return mesh
 
 func generate_outlines(thickness: float = 4.0) -> void:
-	var multimesh = MultiMesh.new()
-	multimesh.mesh = create_single_edge_mesh(thickness)
-	multimesh.use_colors = true
-	multimesh.transform_format = MultiMesh.TRANSFORM_2D
+	var m_mesh = MultiMesh.new()
+	m_mesh.mesh = create_single_edge_mesh(thickness)
+	m_mesh.use_colors = true
+	m_mesh.transform_format = MultiMesh.TRANSFORM_2D
 	
 	var edge_data = []
 	var s = 68.0 # Feldgröße
-	var t = thickness
 	
 	for grid_pos in GameData.player_grid:
 		if not GameData.player_grid[grid_pos]:
@@ -40,15 +39,15 @@ func generate_outlines(thickness: float = 4.0) -> void:
 		var checks = {
 			Vector2i.UP: {
 				"rot": 0.0, 
-				"off": Vector2(0, s) 
+				"off": Vector2(-thickness, s) 
 			},
 			Vector2i.DOWN: {
 				"rot": 0.0, 
-				"off": Vector2(0, 0) 
+				"off": Vector2(-thickness, 0) #x must be longer not offset
 			},
 			Vector2i.RIGHT: {
 				"rot": -PI/2, 
-				"off": Vector2(s, s) 
+				"off": Vector2(s, s- thickness) 
 			},
 			Vector2i.LEFT: {
 				"rot": -PI/2, 
@@ -64,12 +63,12 @@ func generate_outlines(thickness: float = 4.0) -> void:
 					"rot": setup["rot"]
 				})
 	
-	multimesh.instance_count = edge_data.size()
+	m_mesh.instance_count = edge_data.size()
 	
 	for i in range(edge_data.size()):
 		var data = edge_data[i]
 		var tr = Transform2D(data.rot, data.pos)
-		multimesh.set_instance_transform_2d(i, tr)
-		multimesh.set_instance_color(i, Color.RED)
+		m_mesh.set_instance_transform_2d(i, tr)
+		m_mesh.set_instance_color(i, Color.RED)
 		
-	self.multimesh = multimesh
+	self.multimesh = m_mesh

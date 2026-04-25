@@ -9,5 +9,5 @@ func _ready() -> void:
 
 
 func update_currency_label() -> void:
-	var currency = GameData.get("player_currency")
+	var currency: int = int(GameData.get("player_currency"))
 	currency_label.text = str(currency, " coins")

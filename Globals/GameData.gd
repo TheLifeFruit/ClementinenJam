@@ -12,7 +12,7 @@ var grid_data: GridData = GridData.new()
 var occupation_data: Dictionary = {} # Vec2i -> bool
 var player_grid: Dictionary = {} # Vec2i -> bool
 
-var player_currency: int = 10
+var player_currency: float = 10
 
 """
 ----------------------------------------
@@ -65,6 +65,23 @@ func get_price(grid_pos: Vector2i) -> int:
 func pay_price(price: int) -> void:
 	player_currency -= price
 	SignalManager.currency_changed.emit()
+
+## Returns number of player owned panels
+func get_player_panels() -> int:
+	return player_grid.size()
+
+## Returns number of player corrupted panels
+func get_clean_player_panels() -> int:
+	var count: int = 0
+	for pos in player_grid:
+		if grid_data.panel_grid.has(pos) and grid_data.panel_grid[pos] == 1:
+			count += 1
+	return count
+
+
+## Returns number of player corrupted panels
+func get_corrupted_player_panels() -> int:
+	return get_player_panels() - get_clean_player_panels()
 
 
 """
