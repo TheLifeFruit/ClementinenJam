@@ -1,5 +1,6 @@
 extends Node2D
 const PLAYER = preload("uid://bpkpo87ntubhe")
+@onready var offset: Node2D = $Offset
 
 
 func _ready() -> void:
@@ -26,21 +27,29 @@ func _input(event: InputEvent) -> void:
 #GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), randi_range(0,1))
 
 func move_down() -> void:
+	GameData.screen_pos.y -= 1
 	GameData.player_pos.y -= 1
+	offset.global_position.y -= 68
 	SignalManager.update_visuals.emit()
 	
 
 func move_up() -> void:
+	GameData.screen_pos.y += 1
 	GameData.player_pos.y += 1
+	offset.global_position.y += 68
 	SignalManager.update_visuals.emit()
 
 
 
 func move_right() -> void:
+	GameData.screen_pos.x += 1
 	GameData.player_pos.x += 1
+	offset.global_position.x -= 68
 	SignalManager.update_visuals.emit()
 	
 
 func move_left() -> void:
+	GameData.screen_pos.x -= 1
 	GameData.player_pos.x -= 1
+	offset.global_position.x += 68
 	SignalManager.update_visuals.emit()

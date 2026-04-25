@@ -9,5 +9,7 @@ script = ExtResource("1_fj7yv")
 
 [node name="GRID" parent="." unique_id=943626468 instance=ExtResource("1_f3sb7")]
 
-[node name="Monster_lib" type="Node2D" parent="." unique_id=832728230]
+[node name="Offset" type="Node2D" parent="." unique_id=1277383089]
+
+[node name="Monster_lib" type="Node2D" parent="Offset" unique_id=832728230]
 script = ExtResource("3_tlwt5")
