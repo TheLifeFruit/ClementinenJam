@@ -28,18 +28,18 @@ func _ready() -> void:
 func _on_tick():
 	if Clock.current_tick % 3 == 0:
 		if direction == 0:
-			spawn_point += Vector2i(-3,0)
+			spawn_point += Vector2i(-4,0)
 		elif direction == 1:
-			spawn_point += Vector2i(3,0)
+			spawn_point += Vector2i(4,0)
 		elif direction == 2:
-			spawn_point += Vector2i(0,-3)
+			spawn_point += Vector2i(0,-4)
 		else:
-			spawn_point += Vector2i(0,3)
+			spawn_point += Vector2i(0,4)
 	# 3 auf 3 feld#
 	for i in range(3):
 		for j in  range(3):
 			var newvec = Vector2i(spawn_point[0] + i-1,spawn_point[1] + j-1)
-			GameData.grid_data.change_panel_state(newvec,1)
+			GameData.grid_data.change_panel_state(newvec,0)
 	position = GameData.go_to(spawn_point)
 	
 	if abs(spawn_point[0]-GameData.screen_pos[0]) > OUT_X*1.5 or abs(spawn_point[1]-GameData.screen_pos[1]) > OUT_Y*1.5:

@@ -20,10 +20,7 @@ func _ready() -> void:
 		
 
 func power_up_spawn():
-	for i in range(5):
-		var light_bomb = LIGHT_BOMB.instantiate()
-		add_child(light_bomb)
-		
+	pass
 func spawn():
 	var moster_jumper = MONSTER_JUMPER.instantiate()
 	#add_child(moster_jumper)
@@ -33,15 +30,16 @@ func _on_tick() -> void:
 	
 	
 	
-	"""
+
 	# Execute logic on specific tick intervals (e.g., every 10 ticks)
 	if Clock.current_tick % 10 == 0:
 		var monster_lin = MONSTER_LIN.instantiate()
 		var moster_jumper = MONSTER_JUMPER.instantiate()
 		var moster_player = MONSTER_PLAYER.instantiate()
+		var light_bomb = LIGHT_BOMB.instantiate()
+		add_child(light_bomb)
 		add_child(moster_jumper)
 		add_child(monster_lin)
-		add_child(moster_player)
-	"""
+
 	
 	
