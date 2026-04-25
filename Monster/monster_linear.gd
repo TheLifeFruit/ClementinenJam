@@ -36,7 +36,7 @@ func _on_tick():
 		spawn_point += Vector2i(0,1)
 	
 	GameData.grid_data.change_panel_state(spawn_point,1)
-	global_position = GameData.go_to(spawn_point)
+	position = GameData.go_to(spawn_point)
 	if abs(spawn_point[0]-GameData.screen_pos[0]) > OUT_X*1.5 or abs(spawn_point[1]-GameData.screen_pos[1]) > OUT_Y*1.5:
 		self.queue_free()
 	

@@ -12,8 +12,8 @@ func _ready() -> void:
 	# Connect to the global tick signal
 	Clock.tick.connect(_on_tick)
 	for x in 10:
-		var moster_jumper = MONSTER_JUMPER.instantiate()
-		add_child(moster_jumper)
+		var monster_lin = MONSTER_LIN.instantiate()
+		add_child(monster_lin)
 
 func _on_tick() -> void:
 	

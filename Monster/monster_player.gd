@@ -29,7 +29,7 @@ func _on_tick():
 	else:
 		spawn_point[1] += sign(dif[1])*1
 	GameData.grid_data.change_panel_state(spawn_point,1)
-	global_position = GameData.go_to(spawn_point)
+	position = GameData.go_to(spawn_point)
 	
 	
 	

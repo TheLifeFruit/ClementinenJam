@@ -8,8 +8,10 @@ func _ready() -> void:
 	add_child(player)
 	
 	for x in 10:
-		GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), randi_range(0,1))
+		GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), 1)
 		
+	
+	SignalManager.update_visuals.emit()
 	
 
 

@@ -13,3 +13,5 @@ res://Monster/monster_player.gd
 res://Globals/SignalManager.gd
 res://world.gd
 res://Globals/Clock.gd
+res://Monster/Monster_player.tscn
+res://Player/player.gd
