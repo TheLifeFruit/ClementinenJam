@@ -12,7 +12,7 @@ func _ready() -> void:
 		GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), 1)
 		
 	"""
-	GameData.set_start_square(4, GameData.screen_pos)
+	GameData.set_start_square(4, GameData.player_pos)
 	
 	
 	SignalManager.update_visuals.emit()
@@ -39,6 +39,7 @@ func move_down() -> void:
 		GameData.player_pos.y -= 1
 		offset.global_position.y -= 68
 		SignalManager.update_visuals.emit()
+		SignalManager.player_move.emit()
 	
 
 func move_up() -> void:
@@ -47,6 +48,7 @@ func move_up() -> void:
 		GameData.player_pos.y += 1
 		offset.global_position.y += 68
 		SignalManager.update_visuals.emit()
+		SignalManager.player_move.emit()
 
 
 
@@ -56,6 +58,7 @@ func move_right() -> void:
 		GameData.player_pos.x += 1
 		offset.global_position.x -= 68
 		SignalManager.update_visuals.emit()
+		SignalManager.player_move.emit()
 	
 
 func move_left() -> void:
@@ -64,3 +67,4 @@ func move_left() -> void:
 		GameData.player_pos.x -= 1
 		offset.global_position.x += 68
 		SignalManager.update_visuals.emit()
+		SignalManager.player_move.emit()
