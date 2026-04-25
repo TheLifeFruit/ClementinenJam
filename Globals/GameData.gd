@@ -14,6 +14,8 @@ var player_grid: Dictionary = {} # Vec2i -> bool
 
 var player_currency: float = 10
 
+var game_over_perc: float = 0.3
+
 """
 ----------------------------------------
 [START] Player GRID

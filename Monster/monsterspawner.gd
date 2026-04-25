@@ -28,9 +28,6 @@ func spawn():
 
 func _on_tick() -> void:
 	
-	
-	
-
 	# Execute logic on specific tick intervals (e.g., every 10 ticks)
 	if Clock.current_tick % 10 == 0:
 		var monster_lin = MONSTER_LIN.instantiate()

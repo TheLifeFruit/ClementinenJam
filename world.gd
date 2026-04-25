@@ -1,22 +1,27 @@
 extends Node2D
 const PLAYER = preload("uid://bpkpo87ntubhe")
 @onready var offset: Node2D = $Offset
+const GAME_OVER = preload("res://UI/game_over.tscn")
+const MAIN_MENU = preload("res://UI/main_menu.tscn")
+
 
 
 func _ready() -> void:
-	var player = PLAYER.instantiate()
-	add_child(player)
-	
-	"""
-	for x in 10:
-		GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), 1)
-		
-	"""
+	SignalManager.new_game.connect(new_game)
+	var main_menu = MAIN_MENU.instantiate()
+	add_child(main_menu)
+
+
+
+func new_game() -> void:
 	GameData.set_start_square(4, GameData.player_pos)
-	
 	
 	SignalManager.update_visuals.emit()
 	Clock.tick.connect(cycle)
+	
+	
+	var player = PLAYER.instantiate()
+	add_child(player)
 	
 
 func cycle() -> void:
@@ -25,11 +30,19 @@ func cycle() -> void:
 	var corrupted: float = amount - clean
 	var percentage_clean: float = float(clean / amount)
 	
+	if (percentage_clean <= GameData.game_over_perc):
+		game_over()
+	
 	SignalManager.percentage_changed.emit(percentage_clean)
 	
 	
 	money_payout(clean * percentage_clean * 0.005)
 	
+
+
+func game_over() -> void:
+	printerr("GAME OVER")
+	SignalManager.game_over.emit()
 
 
 func money_payout(increase: float) -> void:
