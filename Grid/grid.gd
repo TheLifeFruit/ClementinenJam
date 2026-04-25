@@ -47,8 +47,12 @@ func update_panel_visuals(grid_pos: Vector2i) -> void:
 	#print(grid_pos, ": ", screen_pos)
 	if not grid_panel_objects.has(screen_pos):
 		return
-	
-	grid_panel_objects[screen_pos].update_visuals()
+	var panel_state = GameData.grid_data.get_panel_state(grid_pos)
+	if  panel_state == 1:
+		grid_panel_objects[screen_pos].update_visuals(Color.WHITE, Vector2i(screen_pos.x, screen_pos.y) + Vector2i(GameData.screen_pos.x, GameData.screen_pos.y) , Color.BLACK)
+	else:
+		grid_panel_objects[screen_pos].update_visuals(Color.BLACK, Vector2i(screen_pos.x, screen_pos.y) + Vector2i(GameData.screen_pos.x, GameData.screen_pos.y) , Color.WHITE)
+		
 
 
 func is_visible_on_screen(grid_pos: Vector2i) -> bool:

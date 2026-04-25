@@ -15,8 +15,9 @@ func get_panel_state(grid_pos: Vector2i) -> int:
 	
 
 func change_panel_state(grid_pos: Vector2i, state: int) -> void:
-	if not panel_grid.has(grid_pos):
-		panel_grid[grid_pos] = state
+	panel_grid[grid_pos] = state
+	if panel_grid.has(grid_pos):
+		
 		SignalManager.update_panel_visual.emit(grid_pos)
 		
 		return

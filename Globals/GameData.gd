@@ -85,7 +85,7 @@ func request_move(current_pos: Vector2i, desired_grid_pos: Vector2i, play_type: 
 	# Check occupation
 	if occupation_data.has(desired_grid_pos):
 		return false
-	if play_type == 100 and not player_grid.has(desired_grid_pos):
+	if play_type == 1 and not player_grid.has(desired_grid_pos):
 		return false
 	occupation_data.erase(current_pos)
 	occupation_data[desired_grid_pos] = true

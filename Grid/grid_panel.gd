@@ -26,5 +26,6 @@ func _on_gui_input(event: InputEvent) -> void:
 			var grid_pos: Vector2i = GameData.get_grid_pos(display_pos)
 			print("buying: ", grid_pos, " on display_pos: ", display_pos)
 			if GameData.try_to_buy_panel(grid_pos):
+				GameData.change_panel(grid_pos, 1)
 				SignalManager.rebuild_player_grid.emit()
 			
