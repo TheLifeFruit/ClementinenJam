@@ -53,4 +53,5 @@ func move(dir:Vector2i):
 func need_delete() -> void:
 	if abs(spawn_point[0]-GameData.player_pos[0]) > OUT_X*1.5 or abs(spawn_point[1]-GameData.player_pos[1]) > OUT_Y*1.5:
 		print("Deleted")
+		GameData.occupation_data.erase(spawn_point)
 		self.queue_free()
