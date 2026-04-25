@@ -55,6 +55,7 @@ func set_start_square(l2: int, middle: Vector2i) -> void:
 		for y in range(middle.y - l2, middle.y + l2):
 			grid_data.panel_grid[Vector2i(x,y)] =  1
 			player_grid[Vector2i(x,y)] = true
+	SignalManager.rebuild_player_grid.emit()
 	
 	# DISABLED SINCE START ALWAYS REFRESHES
 	#SignalManager.update_visuals.emit()

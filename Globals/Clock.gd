@@ -1,7 +1,7 @@
 extends Node
 
-signal tick
-signal loaded
+signal tick()
+signal loaded()
 # Configuration
 var ticks_per_second : float = 2.0 # Actions happen twice per second
 

@@ -42,6 +42,8 @@ func cycle() -> void:
 
 func game_over() -> void:
 	printerr("GAME OVER")
+	var game_over  = MAIN_MENU.instantiate()
+	add_child(game_over)
 	SignalManager.game_over.emit()
 
 
