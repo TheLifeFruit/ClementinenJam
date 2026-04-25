@@ -9,6 +9,7 @@ var grid_panel_objects: Dictionary = {} # Vec2i -> Object
 #TODO SHARE GRID WITH GAMEDATA
 
 func _ready() -> void:
+	
 	SignalManager.update_visuals.connect(update_display)
 	SignalManager.update_panel_visual.connect(update_panel_visuals)
 	

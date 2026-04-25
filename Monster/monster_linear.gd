@@ -1,63 +1,53 @@
-extends Sprite2D
+extends body
 
-var direction = 0
-var spawn_width = 5
-var grid_pos = Vector2i(0,0)
-var OUT_X = 0 
-var OUT_Y = 0
+var spawn_width: int = 5
+var OUT_X: int = 0 
+var OUT_Y: int = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	super() # Calls body._ready() to generate the UUID
+	
 	OUT_X = get_parent().OUT_X
 	OUT_Y = get_parent().OUT_Y
 
 	Clock.tick.connect(_on_tick)
-	direction = randi_range(0,3)
-	var pos =  randi_range(-spawn_width, spawn_width)
-	if direction == 0:
-		grid_pos = GameData.player_pos + Vector2i(OUT_X,pos)
-	elif direction == 1:
-		grid_pos = GameData.player_pos + Vector2i(-OUT_X,pos)
-	elif direction == 2:
-		grid_pos = GameData.player_pos + Vector2i(pos,OUT_Y)
-	else:
-
-		grid_pos = GameData.player_pos + Vector2i(pos,-OUT_Y)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _on_tick():
-	if direction == 0:
-		move( Vector2i(-1,0))
-	elif direction == 1:
-		move( Vector2i(1,0))
-	elif direction == 2:
-		move( Vector2i(0,-1))
-	else:
-		move( Vector2i(0,1))
+	dir = randi_range(0, 3)
+	var pos = randi_range(-spawn_width, spawn_width)
 	
+	# Mapped spawn positions to align with the base class 'dirs' array:
+	# 0: UP    | 1: RIGHT | 2: DOWN  | 3: LEFT
+	if dir == 0:
+		grid_pos = GameData.player_pos + Vector2i(pos, OUT_Y)
+	elif dir == 1:
+		grid_pos = GameData.player_pos + Vector2i(-OUT_X, pos)
+	elif dir == 2:
+		grid_pos = GameData.player_pos + Vector2i(pos, -OUT_Y)
+	else:
+		grid_pos = GameData.player_pos + Vector2i(OUT_X, pos)
 
-	print(grid_pos)
-	
+	# Initialize visual rotation based on spawn direction
+	rotation = turn_by_int(dir)
+
+func _on_tick() -> void:
+	# dirs array inherited from 'body' automatically translates int to Vector2i
+	_custom_move(dirs[dir])
 	need_delete()
-	
-	
-	
-func move(dir:Vector2i):
-	var vec: Vector2 = dir
-	rotation = vec.angle() - PI/2
 
-	if GameData.request_move(grid_pos,grid_pos+dir, self):
+func _custom_move(move_vector: Vector2i) -> void:
+	# Update rotation if direction changed in a previous failed move
+	rotation = turn_by_int(dir)
+	
+	var target_pos: Vector2i = grid_pos + move_vector
 
-		grid_pos += dir
-		GameData.grid_data.change_panel_state(grid_pos,0)
-		position = GameData.go_to(grid_pos)	
+	if GameData.request_move(grid_pos, target_pos, self):
+		grid_pos = target_pos
+		GameData.grid_data.change_panel_state(grid_pos, 0)
+		position = GameData.go_to(grid_pos)    
 	else:
-		direction = randi_range(0,3)
+		# Bounce / pick new direction on failure
+		dir = randi_range(0, 3)
 
 func need_delete() -> void:
-	if abs(grid_pos[0]-GameData.player_pos[0]) > OUT_X*1.5 or abs(grid_pos[1]-GameData.player_pos[1]) > OUT_Y*1.5:
-		print("Deleted")
-		GameData.occupation_data.erase(grid_pos)
-		self.queue_free()
+	if abs(grid_pos.x - GameData.player_pos.x) > OUT_X * 1.5 or abs(grid_pos.y - GameData.player_pos.y) > OUT_Y * 1.5:
+		# Calls inherited remove() function to clear occupation data and free node
+		remove()

@@ -5,7 +5,7 @@ const MONSTER_JUMPER =  preload("res://Monster/Monster_jumper.tscn")
 const MONSTER_PLAYER = preload("res://Monster/Monster_player.tscn")
 
 const LIGHT_BOMB = preload("res://PowerUps/Light_bomb.tscn")
-const H_POWERUP = preload("res://PowerUps/H_powerup.tscn")
+const H_POWERUP = preload("res://PowerUps/BasicLamp.tscn")
 
 const OUT_X = 10
 const OUT_Y = 10
@@ -29,6 +29,7 @@ func power_up_spawn(entity):
 	var entity_inst = entity.instantiate()
 	entity_inst.position = GameData.go_to(grid_pos)
 	entity_inst.grid_pos = grid_pos
+	GameData.occupation_data[grid_pos] = entity_inst
 	add_child(entity_inst)
 	pass
 	
@@ -49,7 +50,6 @@ func _on_tick() -> void:
 		var moster_player = MONSTER_PLAYER.instantiate()
 		add_child(moster_jumper)
 		add_child(monster_lin)
-		power_up_spawn(LIGHT_BOMB)
 		power_up_spawn(H_POWERUP)
 
 	

@@ -54,70 +54,49 @@ func money_payout(increase: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	
 	if event.is_action_pressed("DOWN"):
-		move_down()
+		attempt_player_move(Vector2i(0, -1))
 	if event.is_action_pressed("UP"):
-		move_up()
+		attempt_player_move(Vector2i(0, 1))
 	if event.is_action_pressed("RIGHT"):
-		move_right()
+		attempt_player_move(Vector2i(1, 0))
 	if event.is_action_pressed("LEFT"):
-		move_left()
+		attempt_player_move(Vector2i(-1, 0))
 
-#GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), randi_range(0,1))
+func attempt_player_move(dir: Vector2i) -> void:
+	var target_pos: Vector2i = GameData.player_pos + dir
 
-func move_down() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,-1), self, 1):
-		GameData.screen_pos.y -= 1
-		GameData.player_pos.y -= 1
-		offset.global_position.y -= 68
+	# 1. Evaluate Target Tile for Occupants (The Push Mechanic)
+	if GameData.occupation_data.has(target_pos):
+		var occupant = GameData.occupation_data[target_pos]
+		if occupant != null:
+			print(occupant)
+			if occupant.has_method("push"):
+				if not occupant.push(dir):
+					# The block is stuck against a wall or another object. 
+					# Stop player movement.
+					return 
+			else:
+				# Tile is occupied by a non-pushable entity (e.g., enemy)
+				return
+		else:
+			GameData.occupation_data.erase(target_pos)
+
+	# 2. Standard Player Movement (Executes if tile was empty or block was pushed out of the way)
+	if GameData.request_move(GameData.player_pos, target_pos, self, 1):
+		GameData.screen_pos += dir
+		GameData.player_pos += dir
+		
+		# Consolidates your hardcoded offset logic mathematically
+		offset.global_position.x -= dir.x * 68
+		offset.global_position.y += dir.y * 68
+		
 		SignalManager.update_visuals.emit()
 		SignalManager.player_move.emit()
+		
+	# 3. Target tile is not owned. Try to buy it.
 	else:
-		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(0,-1)):
-			GameData.change_panel(GameData.player_pos + Vector2i(0,-1), 1)
+		if GameData.try_to_buy_panel(target_pos):
+			GameData.change_panel(target_pos, 1)
 			SignalManager.rebuild_player_grid.emit()
-			move_down()
-	
-
-func move_up() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,1), self, 1):
-		GameData.screen_pos.y += 1
-		GameData.player_pos.y += 1
-		offset.global_position.y += 68
-		SignalManager.update_visuals.emit()
-		SignalManager.player_move.emit()
-	else:
-		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(0,1)):
-			GameData.change_panel(GameData.player_pos + Vector2i(0,1), 1)
-			SignalManager.rebuild_player_grid.emit()
-			move_up()
-
-
-
-func move_right() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(1,0), self, 1):
-		GameData.screen_pos.x += 1
-		GameData.player_pos.x += 1
-		offset.global_position.x -= 68
-		SignalManager.update_visuals.emit()
-		SignalManager.player_move.emit()
-	else:
-		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(1,0)):
-			GameData.change_panel(GameData.player_pos + Vector2i(1,0), 1)
-			SignalManager.rebuild_player_grid.emit()
-			move_right()
-	
-
-func move_left() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(-1,0), self, 1):
-		GameData.screen_pos.x -= 1
-		GameData.player_pos.x -= 1
-		offset.global_position.x += 68
-		SignalManager.update_visuals.emit()
-		SignalManager.player_move.emit()
-	else:
-		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(-1,0)):
-			GameData.change_panel(GameData.player_pos + Vector2i(-1,0), 1)
-			SignalManager.rebuild_player_grid.emit()
-			move_left()
+			attempt_player_move(dir) # Recursive call to complete the move after purchase
