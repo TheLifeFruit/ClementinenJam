@@ -38,8 +38,6 @@ func _process(delta: float) -> void:
 func _fire_tick() -> void:
 	current_tick += 1
 	tick.emit()
-	if current_tick == 5:
-		loaded.emit()
 
 # Allows changing speed dynamically (e.g., fast forward)
 func set_tick_rate(new_rate: float) -> void:

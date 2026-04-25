@@ -7,7 +7,7 @@ var type: String
 
 var dir: int = 0
 var dirs: Array[Vector2i] = [Vector2i.UP,Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
-var rot: Array[float] = [0, PI/2, PI, -PI/2]
+var rot: Array[float] = [0, -PI/2, PI, +PI/2]
 
 var OUT_X: int = 0 
 var OUT_Y: int = 0

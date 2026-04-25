@@ -2,8 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://bqo3af1nabaqc" path="res://images/drainer.png" id="1_b6c21"]
 [ext_resource type="Script" uid="uid://bq6u4p3as3of7" path="res://Monster/monster_player.gd" id="2_b6c21"]
+[ext_resource type="Texture2D" uid="uid://dhfwbqguwpdun" path="res://images/miniRect.png" id="3_njsvy"]
 
 [node name="Sprite2D" type="Sprite2D" unique_id=690838564]
 scale = Vector2(4, 4)
 texture = ExtResource("1_b6c21")
 script = ExtResource("2_b6c21")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1971498661]
+visible = false
+position = Vector2(0, 300)
+texture = ExtResource("3_njsvy")

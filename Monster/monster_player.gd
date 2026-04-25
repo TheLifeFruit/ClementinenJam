@@ -3,11 +3,9 @@ extends body
 var spawn_width: int = 5
 
 var total_moves: int = 15
-
+var wait: int = 7
 func _ready() -> void:
 	super() # Generates UUID from base class
-
-	Clock.tick.connect(_on_tick)
 	
 	dir = randi_range(0, 3)
 	var pos = randi_range(-spawn_width, spawn_width)
@@ -25,14 +23,12 @@ func _ready() -> void:
 	rotation = turn_by_int(dir)
 
 func _on_tick() -> void:
-	if Clock.current_tick % 3 == 0:
-		#print(grid_pos,GameData.player_pos)
-		
+		var dif: Vector2i = GameData.player_pos - grid_pos
 		if total_moves >= 0:
-			var dif: Vector2i = GameData.player_pos - grid_pos
+			
 			
 			# Convert the coordinate difference into a base class direction index (0-3)
-			if abs(dif.x) > abs(dif.y):
+			if abs(dif.x) < abs(dif.y):
 				dir = 1 if dif.x > 0 else 3 # Right (1) or Left (3)
 			else:
 				dir = 2 if dif.y > 0 else 0 # Down (2) or Up (0)
@@ -40,9 +36,19 @@ func _on_tick() -> void:
 			_custom_move(dirs[dir])
 			total_moves -= 1
 		else:
-			# Random walk phase
-			_custom_move(dirs[dir])
+			if wait%2 == 1:
+				if abs(dif.x) > abs(dif.y):
+					dir = 1 if dif.x > 0 else 3 # Right (1) or Left (3)
+				else:
+					dir = 2 if dif.y > 0 else 0
+				rotation = rot[dir]
+				get_child(0).visible = true
+			elif wait%2 == 0:
+				get_child(0).visible = false
+				if wait == 0:
+					print("fire")
 			
+			wait -= 1
 		need_delete()
 
 func _custom_move(move_vector: Vector2i) -> void:

@@ -45,7 +45,7 @@ func _on_tick() -> void:
 		var monster_lin = MONSTER_LIN.instantiate()
 		var moster_jumper = MONSTER_JUMPER.instantiate()
 		var moster_player = MONSTER_PLAYER.instantiate()
-		add_child(moster_jumper)
+		add_child(moster_player)
 		add_child(monster_lin)
 		if Clock.current_tick % 20 == 0:
 			power_up_spawn(H_POWERUP)
