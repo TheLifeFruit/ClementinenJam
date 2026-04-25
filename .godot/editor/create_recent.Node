@@ -1,11 +1,13 @@
+ColorRect
+PanelContainer
+Panel
+Label
+Control
 MultiMeshInstance2D
 Sprite2D
 Node2D
-Label
 AspectRatioContainer
 MeshInstance2D
 CharacterBody2D
-PanelContainer
 MarginContainer
 GridContainer
-ColorRect

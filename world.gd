@@ -16,7 +16,20 @@ func _ready() -> void:
 	
 	
 	SignalManager.update_visuals.emit()
+	Clock.tick.connect(cycle)
 	
+
+func cycle() -> void:
+	var amount = GameData.get_player_panels()
+	var clean = GameData.get_clean_player_panels()
+	var corrupted = amount - clean
+	var percentage_clean = clean / amount
+	money_payout(clean * percentage_clean* 0.005)
+
+
+func money_payout(increase: float) -> void:
+	GameData.player_currency += increase
+	SignalManager.currency_changed.emit()
 
 
 

@@ -12,7 +12,7 @@ var grid_data: GridData = GridData.new()
 var occupation_data: Dictionary = {} # Vec2i -> bool
 var player_grid: Dictionary = {} # Vec2i -> bool
 
-var player_currency: int = 10
+var player_currency: float = 10
 
 """
 ----------------------------------------
@@ -26,12 +26,27 @@ func try_to_buy_panel(grid_pos: Vector2i) -> bool:
 		return false
 	
 	if player_grid.has(grid_pos) and player_grid[grid_pos]:
-		return true
+		return false
 	
-	player_currency -= get_price(grid_pos)
+	if not has_neighbours(grid_pos):
+		return false
+	
+	pay_price(get_price(grid_pos))
 	player_grid[grid_pos] = true
 	return true
 
+
+## Helper for try_to_buy_panel
+func has_neighbours(grid_pos: Vector2i) -> bool:
+	var dirs = [Vector2i(0,1), Vector2i(0,-1), Vector2i(1,0), Vector2i(-1,0)]
+	
+	
+	for dir in dirs:
+		if player_grid.has(grid_pos + dir):
+			return true
+	
+	
+	return false
 
 func set_start_square(l2: int, middle: Vector2i) -> void:
 	for x in range(middle.x - l2, middle.x + l2):
@@ -45,6 +60,28 @@ func set_start_square(l2: int, middle: Vector2i) -> void:
 
 func get_price(grid_pos: Vector2i) -> int:
 	return 1
+
+
+func pay_price(price: int) -> void:
+	player_currency -= price
+	SignalManager.currency_changed.emit()
+
+## Returns number of player owned panels
+func get_player_panels() -> int:
+	return player_grid.size()
+
+## Returns number of player corrupted panels
+func get_clean_player_panels() -> int:
+	var count: int = 0
+	for pos in player_grid:
+		if grid_data.panel_grid.has(pos) and grid_data.panel_grid[pos] == 1:
+			count += 1
+	return count
+
+
+## Returns number of player corrupted panels
+func get_corrupted_player_panels() -> int:
+	return get_player_panels() - get_clean_player_panels()
 
 
 """

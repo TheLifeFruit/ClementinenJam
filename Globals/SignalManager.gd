@@ -8,9 +8,4 @@ signal player_move()
 
 signal rebuild_player_grid()
 
-func _ready() -> void:
-	update_visuals.connect(print_state)
-	
-
-func print_state() -> void:
-	print("screen refresh")
+signal currency_changed()
