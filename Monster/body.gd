@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name body
 
 var grid_pos: Vector2i
 var uuid: String
@@ -7,6 +8,10 @@ var type: String
 var dir: int = 0
 var dirs: Array[Vector2i] = [Vector2i.UP,Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
 var rot: Array[float] = [0, PI/2, PI, -PI/2]
+
+
+func _ready() -> void:
+	uuid = GameData.generate_uuid_v4()
 
 func remove() -> void:
 	GameData.occupation_data.erase(grid_pos)
@@ -21,7 +26,7 @@ func give_type() -> String:
 
 
 func try_move(new_grid_pos: Vector2i) -> void:
-	if GameData.request_move(grid_pos, new_grid_pos, 0):
+	if GameData.request_move(grid_pos, new_grid_pos, self, 0):
 		position = GameData.go_to(new_grid_pos)
 		grid_pos = new_grid_pos
 

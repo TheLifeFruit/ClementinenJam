@@ -45,7 +45,7 @@ func _on_tick():
 	
 	
 func move(dir:Vector2i):
-	if GameData.request_move(grid_pos,grid_pos+dir):
+	if GameData.request_move(grid_pos,grid_pos+dir, self):
 		grid_pos += dir
 		GameData.grid_data.change_panel_state(grid_pos,0)
 		position = GameData.go_to(grid_pos)	

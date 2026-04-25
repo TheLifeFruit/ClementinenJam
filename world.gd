@@ -67,7 +67,7 @@ func _input(event: InputEvent) -> void:
 #GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), randi_range(0,1))
 
 func move_down() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,-1), 1):
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,-1), self, 1):
 		GameData.screen_pos.y -= 1
 		GameData.player_pos.y -= 1
 		offset.global_position.y -= 68
@@ -81,7 +81,7 @@ func move_down() -> void:
 	
 
 func move_up() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,1), 1):
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,1), self, 1):
 		GameData.screen_pos.y += 1
 		GameData.player_pos.y += 1
 		offset.global_position.y += 68
@@ -96,7 +96,7 @@ func move_up() -> void:
 
 
 func move_right() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(1,0), 1):
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(1,0), self, 1):
 		GameData.screen_pos.x += 1
 		GameData.player_pos.x += 1
 		offset.global_position.x -= 68
@@ -110,7 +110,7 @@ func move_right() -> void:
 	
 
 func move_left() -> void:
-	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(-1,0), 1):
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(-1,0), self, 1):
 		GameData.screen_pos.x -= 1
 		GameData.player_pos.x -= 1
 		offset.global_position.x += 68

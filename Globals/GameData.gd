@@ -9,10 +9,15 @@ var screen_pos: Vector2i = Vector2i.ZERO
 var player_pos: Vector2i = screen_pos + Vector2i(8, 4)
 
 var grid_data: GridData = GridData.new()
-var occupation_data: Dictionary = {} # Vec2i -> bool
+var occupation_data: Dictionary = {} # Vec2i -> object
 var player_grid: Dictionary = {} # Vec2i -> bool
 
+
+
+
 var player_currency: float = 10
+
+
 
 var game_over_perc: float = 0.3
 
@@ -148,14 +153,14 @@ func get_grid_pos(display_pos: Vector2i) -> Vector2i:
 
 
 ## Input current and desired new grid_pos
-func request_move(current_pos: Vector2i, desired_grid_pos: Vector2i, play_type: int = 0) -> bool:
+func request_move(current_pos: Vector2i, desired_grid_pos: Vector2i, node, play_type: int = 0) -> bool:
 	# Check occupation
 	if occupation_data.has(desired_grid_pos):
 		return false
 	if play_type == 1 and not player_grid.has(desired_grid_pos):
 		return false
 	occupation_data.erase(current_pos)
-	occupation_data[desired_grid_pos] = true
+	occupation_data[desired_grid_pos] = node
 	
 	return true
 
