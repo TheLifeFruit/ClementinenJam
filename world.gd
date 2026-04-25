@@ -12,7 +12,7 @@ func _ready() -> void:
 		GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), 1)
 		
 	"""
-	GameData.set_start_square(4, GameData.player_pos)
+	GameData.set_start_square(4, GameData.screen_pos)
 	
 	
 	SignalManager.update_visuals.emit()
@@ -21,6 +21,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	
 	if event.is_action_pressed("DOWN"):
 		move_down()
 	if event.is_action_pressed("UP"):
@@ -33,29 +34,33 @@ func _input(event: InputEvent) -> void:
 #GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), randi_range(0,1))
 
 func move_down() -> void:
-	GameData.screen_pos.y -= 1
-	GameData.player_pos.y -= 1
-	offset.global_position.y -= 68
-	SignalManager.update_visuals.emit()
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,-1), 1):
+		GameData.screen_pos.y -= 1
+		GameData.player_pos.y -= 1
+		offset.global_position.y -= 68
+		SignalManager.update_visuals.emit()
 	
 
 func move_up() -> void:
-	GameData.screen_pos.y += 1
-	GameData.player_pos.y += 1
-	offset.global_position.y += 68
-	SignalManager.update_visuals.emit()
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(0,1), 1):
+		GameData.screen_pos.y += 1
+		GameData.player_pos.y += 1
+		offset.global_position.y += 68
+		SignalManager.update_visuals.emit()
 
 
 
 func move_right() -> void:
-	GameData.screen_pos.x += 1
-	GameData.player_pos.x += 1
-	offset.global_position.x -= 68
-	SignalManager.update_visuals.emit()
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(1,0), 1):
+		GameData.screen_pos.x += 1
+		GameData.player_pos.x += 1
+		offset.global_position.x -= 68
+		SignalManager.update_visuals.emit()
 	
 
 func move_left() -> void:
-	GameData.screen_pos.x -= 1
-	GameData.player_pos.x -= 1
-	offset.global_position.x += 68
-	SignalManager.update_visuals.emit()
+	if GameData.request_move(GameData.player_pos, GameData.player_pos + Vector2i(-1,0), 1):
+		GameData.screen_pos.x -= 1
+		GameData.player_pos.x -= 1
+		offset.global_position.x += 68
+		SignalManager.update_visuals.emit()

@@ -18,3 +18,14 @@ func update_visuals(panel_color: Color, grid_pos: Vector2i, text_color: Color = 
 	var pos_text: String = str("(" , grid_pos.x , ", ", grid_pos.y, ")")
 	pos_label.text = pos_text
 	pos_label.add_theme_color_override("font_color", text_color)
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if (event  is InputEventMouseButton):
+		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			var grid_pos: Vector2i = GameData.get_grid_pos(display_pos)
+			print("buying: ", grid_pos, " on display_pos: ", display_pos)
+			if GameData.try_to_buy_panel(grid_pos):
+				GameData.change_panel(grid_pos, 1)
+				SignalManager.rebuild_player_grid.emit()
+			

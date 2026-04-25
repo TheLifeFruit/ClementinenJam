@@ -10,6 +10,8 @@ var grid_panel_objects: Dictionary = {} # Vec2i -> Object
 
 func _ready() -> void:
 	SignalManager.update_visuals.connect(update_display)
+	SignalManager.update_panel_visual.connect(update_panel_visuals)
+	
 	populate_display_grid()
 	
 	set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -17,6 +19,8 @@ func _ready() -> void:
 	# Ensure the panel expands to take up available space in a container
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
+
+
 
 
 func update_display() -> void:
@@ -38,8 +42,17 @@ func update_display() -> void:
 
 
 func update_panel_visuals(grid_pos: Vector2i) -> void:
-	if is_visible_on_screen(grid_pos):
-		grid_panel_objects[grid_pos].update_visuals()
+	
+	var screen_pos: Vector2i = GameData.get_screen_pos(grid_pos)
+	#print(grid_pos, ": ", screen_pos)
+	if not grid_panel_objects.has(screen_pos):
+		return
+	var panel_state = GameData.grid_data.get_panel_state(grid_pos)
+	if  panel_state == 1:
+		grid_panel_objects[screen_pos].update_visuals(Color.WHITE, Vector2i(screen_pos.x, screen_pos.y) + Vector2i(GameData.screen_pos.x, GameData.screen_pos.y) , Color.BLACK)
+	else:
+		grid_panel_objects[screen_pos].update_visuals(Color.BLACK, Vector2i(screen_pos.x, screen_pos.y) + Vector2i(GameData.screen_pos.x, GameData.screen_pos.y) , Color.WHITE)
+		
 
 
 func is_visible_on_screen(grid_pos: Vector2i) -> bool:

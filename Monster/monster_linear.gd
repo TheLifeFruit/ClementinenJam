@@ -8,8 +8,10 @@ var OUT_Y = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
 	OUT_X = 	get_parent().OUT_X
 	OUT_Y = get_parent().OUT_Y
+
 	Clock.tick.connect(_on_tick)
 	direction = randi_range(0,3)
 	var pos =  randi_range(-spawn_width, spawn_width)
@@ -35,9 +37,11 @@ func _on_tick():
 	else:
 		spawn_point += Vector2i(0,1)
 	
+
 	print(spawn_point)
 	GameData.grid_data.change_panel_state(spawn_point,0)
 	position = GameData.go_to(spawn_point)
+
 	
 	need_delete()
 	
