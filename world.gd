@@ -58,6 +58,11 @@ func move_down() -> void:
 		offset.global_position.y -= 68
 		SignalManager.update_visuals.emit()
 		SignalManager.player_move.emit()
+	else:
+		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(0,-1)):
+			GameData.change_panel(GameData.player_pos + Vector2i(0,-1), 1)
+			SignalManager.rebuild_player_grid.emit()
+			move_down()
 	
 
 func move_up() -> void:
@@ -67,6 +72,11 @@ func move_up() -> void:
 		offset.global_position.y += 68
 		SignalManager.update_visuals.emit()
 		SignalManager.player_move.emit()
+	else:
+		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(0,1)):
+			GameData.change_panel(GameData.player_pos + Vector2i(0,1), 1)
+			SignalManager.rebuild_player_grid.emit()
+			move_up()
 
 
 
@@ -77,6 +87,11 @@ func move_right() -> void:
 		offset.global_position.x -= 68
 		SignalManager.update_visuals.emit()
 		SignalManager.player_move.emit()
+	else:
+		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(1,0)):
+			GameData.change_panel(GameData.player_pos + Vector2i(1,0), 1)
+			SignalManager.rebuild_player_grid.emit()
+			move_right()
 	
 
 func move_left() -> void:
@@ -86,3 +101,8 @@ func move_left() -> void:
 		offset.global_position.x += 68
 		SignalManager.update_visuals.emit()
 		SignalManager.player_move.emit()
+	else:
+		if GameData.try_to_buy_panel(GameData.player_pos + Vector2i(-1,0)):
+			GameData.change_panel(GameData.player_pos + Vector2i(-1,0), 1)
+			SignalManager.rebuild_player_grid.emit()
+			move_left()

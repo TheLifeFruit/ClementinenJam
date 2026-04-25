@@ -17,8 +17,8 @@ func check_onit():
 func process_modi():
 	if grid_pos == GameData.player_pos:
 		print("powerUp")
-		for i in range(5):
-				var change = grid_pos + Vector2i(i-2,0)
+		for i in range(7):
+				var change = grid_pos + Vector2i(i-3,0)
 				GameData.change_panel(change,1)
 				
 		self.queue_free()
