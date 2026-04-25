@@ -9,7 +9,7 @@ var OUT_Y = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
-	OUT_X = 	get_parent().OUT_X
+	OUT_X = get_parent().OUT_X
 	OUT_Y = get_parent().OUT_Y
 
 	Clock.tick.connect(_on_tick)
@@ -29,22 +29,27 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_tick():
 	if direction == 0:
-		spawn_point += Vector2i(-1,0)
+		move( Vector2i(-1,0))
 	elif direction == 1:
-		spawn_point += Vector2i(1,0)
+		move( Vector2i(1,0))
 	elif direction == 2:
-		spawn_point += Vector2i(0,-1)
+		move( Vector2i(0,-1))
 	else:
-		spawn_point += Vector2i(0,1)
+		move( Vector2i(0,1))
 	
 
 	print(spawn_point)
-	GameData.grid_data.change_panel_state(spawn_point,0)
-	position = GameData.go_to(spawn_point)
-
 	
 	need_delete()
 	
+	
+	
+func move(dir:Vector2i):
+	if GameData.request_move(spawn_point,spawn_point+dir):
+		spawn_point += dir
+		GameData.grid_data.change_panel_state(spawn_point,0)
+		position = GameData.go_to(spawn_point)	
+
 func need_delete() -> void:
 	if abs(spawn_point[0]-GameData.player_pos[0]) > OUT_X*1.5 or abs(spawn_point[1]-GameData.player_pos[1]) > OUT_Y*1.5:
 		print("Deleted")
