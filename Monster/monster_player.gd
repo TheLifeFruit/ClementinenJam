@@ -49,6 +49,8 @@ func _on_tick():
 				move( Vector2i(0,1))
 		need_delete()
 func move(dir:Vector2i):
+	var vec: Vector2 = dir
+	rotation = vec.angle() - PI/2
 	if GameData.request_move(grid_pos,grid_pos+dir):
 		grid_pos += dir
 		GameData.grid_data.change_panel_state(grid_pos,0)

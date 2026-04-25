@@ -12,6 +12,8 @@ var grid_data: GridData = GridData.new()
 var occupation_data: Dictionary = {} # Vec2i -> bool
 var player_grid: Dictionary = {} # Vec2i -> bool
 
+var inventory: Dictionary = {"Bombe": 0,}
+
 var player_currency: float = 10
 
 var game_over_perc: float = 0.3
