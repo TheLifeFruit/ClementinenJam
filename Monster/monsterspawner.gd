@@ -29,7 +29,6 @@ func power_up_spawn(entity):
 	var entity_inst = entity.instantiate()
 	entity_inst.position = GameData.go_to(grid_pos)
 	entity_inst.grid_pos = grid_pos
-	GameData.occupation_data[grid_pos] = entity_inst
 	add_child(entity_inst)
 	pass
 	
@@ -50,6 +49,7 @@ func _on_tick() -> void:
 		var moster_player = MONSTER_PLAYER.instantiate()
 		add_child(moster_jumper)
 		add_child(monster_lin)
-		power_up_spawn(H_POWERUP)
+		if Clock.current_tick % 50 == 0:
+			power_up_spawn(H_POWERUP)
 
 	
