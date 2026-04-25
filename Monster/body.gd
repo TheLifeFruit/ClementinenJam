@@ -16,13 +16,18 @@ var OUT_Y: int = 0
 func _ready() -> void:
 	OUT_X = get_parent().OUT_X
 	OUT_Y = get_parent().OUT_Y
-
 	Clock.tick.connect(_on_tick)
 	SignalManager.game_over.connect(remove)
-	uuid = GameData.generate_uuid_v4()
+	#uuid = GameData.generate_uuid_v4()
 
-func remove() -> void:
+func remove(dmg_type: int = 0) -> void:
+	if type == "object" and dmg_type < 2:
+		return
+	
+	
 	GameData.occupation_data.erase(grid_pos)
+	SignalManager.game_over.disconnect(remove)
+	Clock.tick.disconnect(_on_tick)
 	queue_free()
 
 func give_uuid() -> String:
@@ -35,10 +40,12 @@ func give_type() -> String:
 	return type
 
 
-func try_move(new_grid_pos: Vector2i) -> void:
+func try_move(new_grid_pos: Vector2i) -> bool:
 	if GameData.request_move(grid_pos, new_grid_pos, self, 0):
 		position = GameData.go_to(new_grid_pos)
 		grid_pos = new_grid_pos
+		return true
+	return false
 
 ## USE 
 func turn_by_int(dir: int) -> float:

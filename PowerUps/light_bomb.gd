@@ -24,11 +24,6 @@ func check_onit():
 
 func process_modi():
 	if grid_pos == GameData.player_pos:
-		GameData.inventory["Bombe"] += 1
-		print("powerUp")
-		for i in range(3):
-			for j in range(3):
-				var change = grid_pos + Vector2i(i-1,j-1)
-				GameData.change_panel(change,1)
-				
+		GameData.paint_bombs += 1
+		SoundManager.play_powerup_sound1()
 		self.queue_free()
