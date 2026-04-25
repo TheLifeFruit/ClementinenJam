@@ -73,17 +73,19 @@ func is_visible_on_screen(grid_pos: Vector2i) -> bool:
 
 ## USE is_visible_on_screen in advance
 func get_screen_pos(grid_pos: Vector2i) -> Vector2i:
-	return Vector2i.ZERO
+	return grid_pos - screen_pos
 
 ## USE display_pos 
 func get_grid_pos(display_pos: Vector2i) -> Vector2i:
-	return Vector2i(display_pos.x, display_pos.y) + Vector2i(GameData.screen_pos.x, GameData.screen_pos.y)
+	return screen_pos + display_pos
 
 
 ## Input current and desired new grid_pos
-func request_move(current_pos: Vector2i, desired_grid_pos: Vector2i) -> bool:
+func request_move(current_pos: Vector2i, desired_grid_pos: Vector2i, play_type: int = 0) -> bool:
 	# Check occupation
 	if occupation_data.has(desired_grid_pos):
+		return false
+	if play_type == 1 and not player_grid.has(desired_grid_pos):
 		return false
 	occupation_data.erase(current_pos)
 	occupation_data[desired_grid_pos] = true
