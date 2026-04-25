@@ -11,10 +11,21 @@ const OUT_Y = 10
 func _ready() -> void:
 	# Connect to the global tick signal
 	Clock.tick.connect(_on_tick)
-	for x in 10:
-		var monster_lin = MONSTER_LIN.instantiate()
-		add_child(monster_lin)
+	SignalManager.spawnmonster.connect(spawn)
+	var monster_lin = MONSTER_LIN.instantiate()
+	add_child(monster_lin)
+	monster_lin = MONSTER_LIN.instantiate()
+	add_child(monster_lin)
+	monster_lin = MONSTER_LIN.instantiate()
+	add_child(monster_lin)
+	monster_lin = MONSTER_PLAYER.instantiate()
+	add_child(monster_lin)
+	
 
+func spawn():
+	var moster_jumper = MONSTER_JUMPER.instantiate()
+	add_child(moster_jumper)
+	
 func _on_tick() -> void:
 	
 	
