@@ -25,9 +25,7 @@ func _on_tick():
 
 
 
-
-
 func try_move(new_grid_pos: Vector2i) -> void:
-	if GameData.request_move(grid_pos, new_grid_pos, 0):
+	if GameData.request_move(grid_pos, new_grid_pos, self, 0):
 		position = GameData.go_to(new_grid_pos)
 		grid_pos = new_grid_pos
