@@ -15,3 +15,9 @@ res://world.gd
 res://Globals/Clock.gd
 res://Monster/Monster_player.tscn
 res://Player/player.gd
+res://Player/player.tscn
+res://Monster/Monster_jumper.tscn
+res://Grid/outline.tscn
+res://monster_template.gd
+res://outline.gd
+res://Monster/monster_default.tscn

@@ -1,6 +1,6 @@
 extends Node
 
-var player_grid: GridData
+
 
 var grid_width: int = 17
 var grid_height: int = 9
@@ -9,10 +9,64 @@ var screen_pos: Vector2i = Vector2i.ZERO
 var player_pos: Vector2i = screen_pos + Vector2i(8, 4)
 
 var grid_data: GridData = GridData.new()
+var occupation_data: Dictionary = {} # Vec2i -> bool
+var player_grid: Dictionary = {} # Vec2i -> bool
+
+var player_currency: int = 10
+
+"""
+----------------------------------------
+[START] Player GRID
+----------------------------------------
+"""
+
+
+func try_to_buy_panel(grid_pos: Vector2i) -> bool:
+	if get_price(grid_pos) > player_currency:
+		return false
+	
+	if player_grid.has(grid_pos) and player_grid[grid_pos]:
+		return true
+	
+	player_currency -= get_price(grid_pos)
+	player_grid[grid_pos] = true
+	return true
+
+
+func set_start_square(l2: int, middle: Vector2i) -> void:
+	for x in range(middle.x - l2, middle.x + l2):
+		for y in range(middle.y - l2, middle.y + l2):
+			grid_data.panel_grid[Vector2i(x,y)] =  1
+			player_grid[Vector2i(x,y)] = true
+	
+	# DISABLED SINCE START ALWAYS REFRESHES
+	#SignalManager.update_visuals.emit()
+
+
+func get_price(grid_pos: Vector2i) -> int:
+	return 1
+
+
+"""
+----------------------------------------
+[START] GRID INTERACTION
+----------------------------------------
+"""
 
 func change_panel(grid_pos: Vector2i, state: int) -> void:
 	grid_data.change_panel_state(grid_pos, state)
 	
+
+
+
+
+
+"""
+----------------------------------------
+[START] POSITION / MOVEMENT
+----------------------------------------
+"""
+
 
 func is_visible_on_screen(grid_pos: Vector2i) -> bool:
 	return not (abs(GameData.screen_pos.x - grid_pos.x) > 8 or abs(GameData.screen_pos.y - grid_pos.y) > 4)
@@ -25,6 +79,21 @@ func get_screen_pos(grid_pos: Vector2i) -> Vector2i:
 func get_grid_pos(display_pos: Vector2i) -> Vector2i:
 	return Vector2i(display_pos.x, display_pos.y) + Vector2i(GameData.screen_pos.x, GameData.screen_pos.y)
 
+
+## Input current and desired new grid_pos
+func request_move(current_pos: Vector2i, desired_grid_pos: Vector2i) -> bool:
+	# Check occupation
+	if occupation_data.has(desired_grid_pos):
+		return false
+	occupation_data.erase(current_pos)
+	occupation_data[desired_grid_pos] = true
+	
+	return true
+
+
+func get_random_spawn_point() -> Vector2i:
+	return Vector2i.ZERO
+	
 
 func go_to(pos_grid: Vector2i) -> Vector2i:
 	return Vector2(pos_grid.x  * 68 + 32, pos_grid.y * 68 + 32)

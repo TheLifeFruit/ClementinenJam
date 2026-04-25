@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://bpkpo87ntubhe"]
 
 [ext_resource type="Texture2D" uid="uid://cukwt4dwvsfsx" path="res://Godot_icon.svg.png" id="1_l8h54"]
-[ext_resource type="Script" uid="uid://uvynx4s47ry5" path="res://Player/player.gd" id="2_4ntmi"]
 
 [node name="Node2D" type="Sprite2D" unique_id=559823967]
 position = Vector2(575, 305)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("1_l8h54")
-script = ExtResource("2_4ntmi")

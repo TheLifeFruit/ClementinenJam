@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://duq64anvol0n3" path="res://Grid/grid.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://c16kbqob3d387" path="res://world.gd" id="1_fj7yv"]
 [ext_resource type="Script" uid="uid://bwel2qs87yg2o" path="res://Monster/monsterspawner.gd" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://crlwfmts8tlju" path="res://Grid/outline.tscn" id="4_aqk2v"]
 
 [node name="World" type="Node2D" unique_id=970723892]
 script = ExtResource("1_fj7yv")
@@ -13,3 +14,5 @@ script = ExtResource("1_fj7yv")
 
 [node name="Monster_lib" type="Node2D" parent="Offset" unique_id=832728230]
 script = ExtResource("3_tlwt5")
+
+[node name="Outline" parent="Offset" unique_id=937688193 instance=ExtResource("4_aqk2v")]

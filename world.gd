@@ -7,9 +7,13 @@ func _ready() -> void:
 	var player = PLAYER.instantiate()
 	add_child(player)
 	
+	"""
 	for x in 10:
 		GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), 1)
 		
+	"""
+	GameData.set_start_square(4, GameData.player_pos)
+	
 	
 	SignalManager.update_visuals.emit()
 	

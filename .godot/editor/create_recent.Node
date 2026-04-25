@@ -1,8 +1,8 @@
-Node2D
 MultiMeshInstance2D
+Sprite2D
+Node2D
 Label
 AspectRatioContainer
-Sprite2D
 MeshInstance2D
 CharacterBody2D
 PanelContainer
