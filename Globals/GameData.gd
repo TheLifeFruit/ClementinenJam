@@ -31,9 +31,10 @@ func try_to_buy_panel(grid_pos: Vector2i) -> bool:
 	if not has_neighbours(grid_pos):
 		return false
 	
-	player_currency -= get_price(grid_pos)
+	pay_price(get_price(grid_pos))
 	player_grid[grid_pos] = true
 	return true
+
 
 ## Helper for try_to_buy_panel
 func has_neighbours(grid_pos: Vector2i) -> bool:
@@ -117,4 +118,5 @@ func get_random_spawn_point() -> Vector2i:
 	
 
 func go_to(pos_grid: Vector2i) -> Vector2i:
-	return Vector2(pos_grid.x  * 68 + 32, pos_grid.y * 68 + 32)
+	return Vector2(pos_grid.x  * 68 + 32, 648
+	-pos_grid.y * 68 -34*2)

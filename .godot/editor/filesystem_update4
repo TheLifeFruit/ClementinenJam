@@ -15,3 +15,5 @@ res://Grid/outline.tscn
 res://outline.gd
 res://Globals/SignalManager.gd
 res://ui.gd
+res://Monster/monster_jumper.gd
+res://Monster/monster_player.gd

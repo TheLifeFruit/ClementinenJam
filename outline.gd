@@ -44,7 +44,7 @@ func generate_outlines(thickness: float = 4.0) -> void:
 			},
 			Vector2i.DOWN: {
 				"rot": 0.0, 
-				"off": Vector2(0, t) 
+				"off": Vector2(0, 0) 
 			},
 			Vector2i.RIGHT: {
 				"rot": -PI/2, 
@@ -52,7 +52,7 @@ func generate_outlines(thickness: float = 4.0) -> void:
 			},
 			Vector2i.LEFT: {
 				"rot": -PI/2, 
-				"off": Vector2(t, s) 
+				"off": Vector2(0, s) 
 			}
 		}
 		

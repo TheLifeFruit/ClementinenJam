@@ -8,8 +8,8 @@ var OUT_Y = 0
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
-	OUT_X = Monsterspawner.OUT_X
-	OUT_Y = Monsterspawner.OUT_Y
+	OUT_X = get_parent().OUT_X
+	OUT_Y = get_parent().OUT_Y
 	Clock.tick.connect(_on_tick)
 	direction = randi_range(0,3)
 	var pos =  randi_range(-spawn_width, spawn_width)

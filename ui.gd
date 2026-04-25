@@ -1,11 +1,13 @@
 extends Control
+@onready var currency_label: Label = $PanelContainer/CurrencyLabel
 
-@onready var currency_label: Label = $CurrencyLabel
 
 
 func _ready() -> void:
 	SignalManager.currency_changed.connect(update_currency_label)
+	update_currency_label()
 
 
 func update_currency_label() -> void:
-	currency_label.text = str(GameData.player_currency, " coins")
+	var currency = GameData.get("player_currency")
+	currency_label.text = str(currency, " coins")
