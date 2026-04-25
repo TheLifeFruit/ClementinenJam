@@ -94,6 +94,10 @@ func change_panel(grid_pos: Vector2i, state: int) -> void:
 	grid_data.change_panel_state(grid_pos, state)
 	
 
+## Use in combination with powerups
+func reset_player_field() -> void:
+	for pos in player_grid:
+		grid_data.panel_grid[pos] = 1
 
 
 

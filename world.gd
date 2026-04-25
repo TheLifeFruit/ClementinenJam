@@ -24,7 +24,12 @@ func cycle() -> void:
 	var clean = GameData.get_clean_player_panels()
 	var corrupted = amount - clean
 	var percentage_clean = clean / amount
-	money_payout(clean * percentage_clean* 0.005)
+	
+	SignalManager.percentage_changed.emit(percentage_clean)
+	
+	
+	money_payout(clean * percentage_clean * 0.005)
+	
 
 
 func money_payout(increase: float) -> void:

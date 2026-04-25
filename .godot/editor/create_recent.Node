@@ -1,7 +1,8 @@
+VBoxContainer
+Label
 ColorRect
 PanelContainer
 Panel
-Label
 Control
 MultiMeshInstance2D
 Sprite2D

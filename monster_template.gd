@@ -1,6 +1,5 @@
 extends Sprite2D
 
-
 var grid_pos: Vector2i
 
 
@@ -23,6 +22,8 @@ func _on_tick():
 	
 	try_move(grid_pos + Vector2i(0, 1))
 	
+
+
 
 
 
