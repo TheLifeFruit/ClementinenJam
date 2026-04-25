@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c16kbqob3d387" path="res://world.gd" id="1_fj7yv"]
 [ext_resource type="Script" uid="uid://bwel2qs87yg2o" path="res://Monster/monsterspawner.gd" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://crlwfmts8tlju" path="res://Grid/outline.tscn" id="4_aqk2v"]
+[ext_resource type="Script" uid="uid://d3ictyoameasn" path="res://ui.gd" id="5_036b0"]
 
 [node name="World" type="Node2D" unique_id=970723892]
 script = ExtResource("1_fj7yv")
@@ -16,3 +17,15 @@ script = ExtResource("1_fj7yv")
 script = ExtResource("3_tlwt5")
 
 [node name="Outline" parent="Offset" unique_id=937688193 instance=ExtResource("4_aqk2v")]
+
+[node name="UI" type="Control" parent="." unique_id=1087954038]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_036b0")
+
+[node name="CurrencyLabel" type="Label" parent="UI" unique_id=1214226711]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

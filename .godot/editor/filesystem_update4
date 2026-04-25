@@ -14,3 +14,4 @@ res://Grid/grid_panel.gd
 res://Grid/outline.tscn
 res://outline.gd
 res://Globals/SignalManager.gd
+res://ui.gd

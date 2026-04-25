@@ -26,12 +26,26 @@ func try_to_buy_panel(grid_pos: Vector2i) -> bool:
 		return false
 	
 	if player_grid.has(grid_pos) and player_grid[grid_pos]:
-		return true
+		return false
+	
+	if not has_neighbours(grid_pos):
+		return false
 	
 	player_currency -= get_price(grid_pos)
 	player_grid[grid_pos] = true
 	return true
 
+## Helper for try_to_buy_panel
+func has_neighbours(grid_pos: Vector2i) -> bool:
+	var dirs = [Vector2i(0,1), Vector2i(0,-1), Vector2i(1,0), Vector2i(-1,0)]
+	
+	
+	for dir in dirs:
+		if player_grid.has(grid_pos + dir):
+			return true
+	
+	
+	return false
 
 func set_start_square(l2: int, middle: Vector2i) -> void:
 	for x in range(middle.x - l2, middle.x + l2):
@@ -45,6 +59,11 @@ func set_start_square(l2: int, middle: Vector2i) -> void:
 
 func get_price(grid_pos: Vector2i) -> int:
 	return 1
+
+
+func pay_price(price: int) -> void:
+	player_currency -= price
+	SignalManager.currency_changed.emit()
 
 
 """
