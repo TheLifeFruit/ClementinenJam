@@ -1,13 +1,19 @@
-extends Sprite2D
+extends body
 
 
-var grid_pos: Vector2i
 
 func _ready() -> void:
-	Clock.tick.connect(lighting)
+	super()
+	type = "object"
+	
+	if not try_move(grid_pos):
+		remove(3)
 	# Assuming you set the initial grid_pos when spawning the object
 	position = GameData.go_to(grid_pos)
 	GameData.occupation_data[grid_pos] = self
+
+
+
 
 ## Called by the player script when walking into this object
 func push(dir: Vector2i) -> bool:
@@ -24,7 +30,10 @@ func push(dir: Vector2i) -> bool:
 		
 	# Block hit a wall, edge, or another entity and cannot move
 	return false
-func lighting():
+
+
+
+func _on_tick():
 	var size_dir = [[0,0],[0,1],[0,-1],[1,0],[-1,0],[1,1],[1,-1],[-1,-1],[-1,1]]
 	if Clock.current_tick % 3 == 0:
 		for vec in size_dir:
@@ -32,7 +41,7 @@ func lighting():
 			vec2.x = vec[0]
 			vec2.y = vec[1]
 			if GameData.grid_data.get_panel_state(grid_pos + vec2) == 0:
-				GameData.change_panel(grid_pos + vec2,1)
+				GameData.change_panel(grid_pos + vec2, 1)
 				return
 		
 	

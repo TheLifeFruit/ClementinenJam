@@ -132,7 +132,7 @@ func get_corrupted_player_panels() -> int:
 func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 	if dmg > 0:
 		if occupation_data.has(grid_pos):
-			occupation_data[grid_pos].remove()
+			occupation_data[grid_pos].remove(dmg)
 	if (state == 1 and not player_grid.has(grid_pos)):
 		return
 	grid_data.change_panel_state(grid_pos, state)

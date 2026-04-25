@@ -120,6 +120,7 @@ func spray() -> void:
 			GameData.change_panel(pos, 1, 1)
 			print(pos)
 		GameData.change_panel(GameData.player_pos, 1, 0)
+		SoundManager.play_refresh_player_grid()
 
 
 
@@ -152,7 +153,7 @@ func get_hit_cells(origin: Vector2i, target_angle: float, range_dist: float, spr
 
 
 
-func remove() -> void:
+func remove(_wdmg_type: int = 0) -> void:
 	print("PLAYER DMG?")
 
 func give_uuid() -> String:
