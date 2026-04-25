@@ -1,4 +1,4 @@
-extends Resource
+extends RefCounted
 class_name PanelData
 
 @export var grid_pos: Vector2i
