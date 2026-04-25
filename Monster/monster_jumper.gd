@@ -1,16 +1,11 @@
 extends body
 
 var spawn_width: int = 5
-var OUT_X: int = 0
-var OUT_Y: int = 0
+
 
 func _ready() -> void:
 	super() 
-	
-	OUT_X = get_parent().OUT_X
-	OUT_Y = get_parent().OUT_Y
-	Clock.tick.connect(_on_tick)
-	
+
 	dir = randi_range(0, 3)
 	var pos = randi_range(-spawn_width, spawn_width)
 	

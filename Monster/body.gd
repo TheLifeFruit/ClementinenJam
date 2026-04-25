@@ -9,8 +9,15 @@ var dir: int = 0
 var dirs: Array[Vector2i] = [Vector2i.UP,Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
 var rot: Array[float] = [0, PI/2, PI, -PI/2]
 
+var OUT_X: int = 0 
+var OUT_Y: int = 0
+
 
 func _ready() -> void:
+	OUT_X = get_parent().OUT_X
+	OUT_Y = get_parent().OUT_Y
+
+	Clock.tick.connect(_on_tick)
 	SignalManager.game_over.connect(remove)
 	uuid = GameData.generate_uuid_v4()
 
@@ -21,6 +28,8 @@ func remove() -> void:
 func give_uuid() -> String:
 	return uuid
 
+func _on_tick():
+	pass
 
 func give_type() -> String:
 	return type

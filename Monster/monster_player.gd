@@ -1,15 +1,12 @@
 extends body
 
 var spawn_width: int = 5
-var OUT_X: int = 0 
-var OUT_Y: int = 0
+
 var total_moves: int = 15
 
 func _ready() -> void:
 	super() # Generates UUID from base class
-	
-	OUT_X = get_parent().OUT_X
-	OUT_Y = get_parent().OUT_Y
+
 	Clock.tick.connect(_on_tick)
 	
 	dir = randi_range(0, 3)
