@@ -12,7 +12,7 @@ func _ready() -> void:
 		GameData.change_panel(Vector2i(randi_range(0,16),randi_range(0,7)), 1)
 		
 	"""
-	GameData.set_start_square(4, GameData.player_pos)
+	GameData.set_start_square(4, GameData.screen_pos)
 	
 	
 	SignalManager.update_visuals.emit()
@@ -21,9 +21,6 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if (event  is InputEventMouseButton):
-		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			print("mb")
 	
 	if event.is_action_pressed("DOWN"):
 		move_down()

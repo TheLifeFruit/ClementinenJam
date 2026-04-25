@@ -10,3 +10,7 @@ res://Grid/grid.tscn
 res://Grid/grid.gd
 res://DataTypes/grid_data.gd
 res://Grid/panel.tscn
+res://Grid/grid_panel.gd
+res://Grid/outline.tscn
+res://outline.gd
+res://Globals/SignalManager.gd

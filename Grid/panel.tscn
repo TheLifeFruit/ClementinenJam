@@ -19,6 +19,7 @@ script = ExtResource("1_y4mqa")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1433075683]
 layout_mode = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="PosLabel" type="Label" parent="." unique_id=190285296]
@@ -29,3 +30,5 @@ text = "x, y"
 
 [node name="DisplayLabel" type="Label" parent="." unique_id=436192077]
 layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
