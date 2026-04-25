@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://tydqou5wal18"]
+
+[ext_resource type="Texture2D" uid="uid://b8d288cq0k6ga" path="res://images/imagesh_pfeile.png" id="1_gy34q"]
+[ext_resource type="Script" uid="uid://m3sqtakypvw4" path="res://PowerUps/h_powerup.gd" id="2_nyqav"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1910998242]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_gy34q")
+script = ExtResource("2_nyqav")
