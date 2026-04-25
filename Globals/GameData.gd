@@ -91,6 +91,8 @@ func get_corrupted_player_panels() -> int:
 """
 
 func change_panel(grid_pos: Vector2i, state: int) -> void:
+	if (state == 1 and not player_grid.has(grid_pos)):
+		return
 	grid_data.change_panel_state(grid_pos, state)
 	
 
