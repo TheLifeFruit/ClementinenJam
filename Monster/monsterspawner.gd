@@ -35,13 +35,12 @@ func power_up_spawn(entity):
 	
 func spawn():
 	var moster_jumper = MONSTER_JUMPER.instantiate()
-	#add_child(moster_jumper)
+	add_child(moster_jumper)
 	
 
 
 
 func _on_tick() -> void:
-	pass
 
 	# Execute logic on specific tick intervals (e.g., every 10 ticks)
 	if Clock.current_tick % 10 == 0:

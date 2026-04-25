@@ -11,3 +11,8 @@ signal rebuild_player_grid()
 signal currency_changed()
 
 signal percentage_changed(new_percentage: float)
+
+
+signal game_over()
+
+signal new_game()

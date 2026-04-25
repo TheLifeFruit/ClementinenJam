@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dduuaxt874jr0"]
+
+[ext_resource type="Script" uid="uid://wg4b2r4fwooe" path="res://main_menu.gd" id="1_p8ccj"]
+
+[node name="MainMenu" type="CanvasLayer" unique_id=666649796]
+script = ExtResource("1_p8ccj")
+
+[node name="Control" type="Control" parent="." unique_id=1575618176]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=732853163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NEW GAME" type="Button" parent="Control" unique_id=1927421289]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = " NEW GAME "
+
+[connection signal="pressed" from="Control/NEW GAME" to="." method="_on_new_game_pressed"]
