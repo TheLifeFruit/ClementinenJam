@@ -49,12 +49,12 @@ gradient = SubResource("Gradient_036b0")
 width = 50
 height = 50
 
+[sub_resource type="LabelSettings" id="LabelSettings_gbfbk"]
+font_size = 24
+
 [sub_resource type="LabelSettings" id="LabelSettings_036b0"]
 font_size = 48
 font_color = Color(0.21568628, 0.14117648, 1, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_gbfbk"]
-font_size = 24
 
 [node name="World" type="Control" unique_id=1943421745]
 layout_mode = 3
@@ -158,51 +158,35 @@ grow_vertical = 2
 label_settings = ExtResource("6_pkg7o")
 vertical_alignment = 1
 
-[node name="PercentageLabel" type="Label" parent="UI-LAYER/UI" unique_id=2023174065]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1155.0879
-offset_top = -31.5
-offset_bottom = 30.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "Perc"
-label_settings = SubResource("LabelSettings_036b0")
-horizontal_alignment = 2
-
 [node name="UseAmountLabel" type="Label" parent="UI-LAYER/UI" unique_id=1737706491]
 unique_name_in_owner = true
 material = ExtResource("5_wse8f")
 use_parent_material = true
 layout_mode = 0
-offset_left = 1014.0
-offset_top = 5.0
-offset_right = 1110.0
-offset_bottom = 37.0
+offset_left = 949.0
+offset_top = 15.0
+offset_right = 1038.0
+offset_bottom = 55.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("6_gbfbk")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 40
 text = "10000"
 
 [node name="Uses" type="TextureRect" parent="UI-LAYER/UI" unique_id=1619770082]
 material = ExtResource("5_wse8f")
 use_parent_material = true
 layout_mode = 0
-offset_left = 979.0
-offset_top = 2.0
-offset_right = 1016.0
-offset_bottom = 39.0
+offset_left = 890.0
+offset_top = 4.0
+offset_right = 946.0
+offset_bottom = 60.0
 texture = ExtResource("6_dwbse")
 
 [node name="YinYang" type="TextureRect" parent="UI-LAYER/UI" unique_id=1879356271]
 unique_name_in_owner = true
+visible = false
 material = ExtResource("5_wse8f")
 use_parent_material = true
 layout_mode = 0

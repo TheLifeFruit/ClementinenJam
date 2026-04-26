@@ -1,6 +1,5 @@
 extends Control
 @onready var currency_label: Label = %CurrencyLabel
-@onready var percentage_label: Label = %PercentageLabel
 @onready var percentage_bar: TextureProgressBar = %PercentageBar
 @onready var use_amount_label: Label = %UseAmountLabel
 @onready var yin_yang: TextureRect = %YinYang
@@ -32,7 +31,7 @@ func _ready() -> void:
 func update_currency_label() -> void:
 	var currency: float = float(GameData.get("player_currency"))
 	# Calls the formatter and appends the " coins" string
-	currency_label.text = " " + format_short_number(currency) + "$" + " + " + str(round(GameData.player_increase)) + "$" 
+	currency_label.text = " " + format_short_number(currency) + " + " + str(round(GameData.player_increase)) 
 
 func format_short_number(value: float) -> String:
 	var suffixes: Array[String] = ["", " K", " Mio", " B", " T"]
@@ -89,8 +88,8 @@ func update_amount() -> void:
 
 func update_percentage_label(percentage: float) -> void:
 	var bar_percentage: float = remap(percentage,GameData.game_over_perc, 1 , 0.0, 1.0)-0.01
-	percentage_label.add_theme_color_override("font_color", Color.BLACK)
-	percentage_label.text = str(round(bar_percentage * 100), "%  ")
+	#percentage_label.add_theme_color_override("font_color", Color.BLACK)
+	#percentage_label.text = str(round(bar_percentage * 100), "%  ")
 	percentage_bar.value = bar_percentage * 100
 	
 	var bar_color = Color.GREEN.lerp(Color.RED, 1.0 - bar_percentage)
