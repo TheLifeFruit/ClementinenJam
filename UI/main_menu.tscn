@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://dduuaxt874jr0"]
 
 [ext_resource type="Script" uid="uid://wg4b2r4fwooe" path="res://main_menu.gd" id="1_p8ccj"]
+[ext_resource type="FontFile" uid="uid://c73b7m4mioj2t" path="res://UI/Basal.ttf" id="2_tk8dj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p8ccj"]
+font = ExtResource("2_tk8dj")
+font_size = 48
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="CanvasLayer" unique_id=666649796]
 script = ExtResource("1_p8ccj")
@@ -14,14 +21,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=732853163]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -1.0
-offset_right = 10.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.34901962)
@@ -43,12 +47,14 @@ grow_vertical = 2
 [node name="Score" type="Label" parent="Control/HBoxContainer" unique_id=968112175]
 layout_mode = 2
 text = "Score:"
+label_settings = SubResource("LabelSettings_p8ccj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Highscore" type="Label" parent="Control/HBoxContainer" unique_id=1560398825]
 layout_mode = 2
 text = "Highscore: "
+label_settings = SubResource("LabelSettings_p8ccj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
