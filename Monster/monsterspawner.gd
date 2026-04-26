@@ -32,7 +32,7 @@ func _ready() -> void:
 func power_up_spawn(type: String = "", spawn_panel_state: int = 1, outside: bool = false) -> bool:
 	if not power_ups.has(type):
 		return false
-		
+	
 	var grid_pos: Vector2i
 	if not outside:
 		grid_pos = GameData.player_grid.keys().pick_random()
@@ -42,9 +42,6 @@ func power_up_spawn(type: String = "", spawn_panel_state: int = 1, outside: bool
 	else:
 		## TODO Implement
 		return true
-		pass
-	return true
-	
 	
 	
 	GameData.power_ups[type] += 1
@@ -54,7 +51,7 @@ func power_up_spawn(type: String = "", spawn_panel_state: int = 1, outside: bool
 	if type != "":
 		entity_inst.type = type
 	add_child(entity_inst)
-
+	return true
 
 
 func spawn(entity):
@@ -106,24 +103,19 @@ func spawn_yang() -> void:
 func _on_tick() -> void:
 	if Clock.current_tick % 10 == 0:
 
-		var entity = MONSTER_PLAYER.instantiate()
-		spawn(entity)
-		entity = MONSTER_JUMPER.instantiate()
-		spawn(entity)
-		entity = MONSTER_LIN.instantiate()
+		#var entity = MONSTER_PLAYER.instantiate()
+		#spawn(entity)
+		#entity = MONSTER_JUMPER.instantiate()
+		#spawn(entity)
+		var entity = MONSTER_LIN.instantiate()
 		spawn(entity)
 		power_up_spawn("light_bomb")
 		# Execute logic on specific tick intervals (e.g., every 10 ticks)
-
-		var monster_lin = MONSTER_LIN.instantiate()
-		var moster_jumper = MONSTER_JUMPER.instantiate()
-		var moster_player = MONSTER_PLAYER.instantiate()
-		add_child(moster_player)
-		add_child(monster_lin)
 		
-		if not GameData.yin:
+		
+		if not GameData.power_ups["yin"]:
 			spawn_yin()
-		else:
+		elif not GameData.power_ups["yang"]:
 			spawn_yang()
 		
 		if Clock.current_tick % 10 == 0:

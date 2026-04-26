@@ -17,7 +17,6 @@
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
 reflected_light_source = 1
-sdfgi_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_036b0"]
 content_margin_left = 0.0
@@ -186,14 +185,13 @@ texture = ExtResource("6_dwbse")
 
 [node name="YinYang" type="TextureRect" parent="UI-LAYER/UI" unique_id=1879356271]
 unique_name_in_owner = true
-visible = false
 material = ExtResource("5_wse8f")
 use_parent_material = true
 layout_mode = 0
-offset_left = 1109.0
-offset_top = 1.0
-offset_right = 1147.0
-offset_bottom = 39.0
+offset_left = 1091.0
+offset_top = 2.0
+offset_right = 1149.0
+offset_bottom = 60.0
 texture = ExtResource("8_ioo17")
 
 [node name="Control" type="GridContainer" parent="." unique_id=213461151]
