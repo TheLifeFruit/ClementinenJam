@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://opwd0hlaerrs"]
 
-[ext_resource type="Script" uid="uid://dyu61ybu10vmq" path="res://Monster/spray.gd" id="1_the3v"]
+[ext_resource type="Script" path="res://Monster/spray.gd" id="1_the3v"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x8ayh"]
 

@@ -13,7 +13,7 @@ signal player_move()
 signal rebuild_player_grid()
 
 @warning_ignore("unused_signal")
-signal currency_changed(delta_currency: float)
+signal currency_changed()
 
 @warning_ignore("unused_signal")
 signal percentage_changed(new_percentage: float)

@@ -21,9 +21,34 @@ func _ready() -> void:
 	var main_menu = MAIN_MENU.instantiate()
 	add_child(main_menu)
 
-
-
+func reset_all():
+	GameData.player_grid = {}
+	GameData.player_field = [1,7,5,11]
+	GameData.grid_data = GridData.new()
+	GameData.player_currency = 0
+	GameData.yang = false
+	GameData.yin = false
+	GameData.player_increase = 0
+	GameData.occupation_data = {}
+	GameData.paint_bombs = 2
+	
+	GameData.screen_pos = Vector2i(0,0)
+	GameData.player_pos = Vector2i(8,4)
+		
+		# Consolidates your hardcoded offset logic mathematically
+	offset.global_position.x = 0
+	offset.global_position.y = 0
+	
+	
+	Clock.current_tick = 0
+	
+	SignalManager.percentage_changed.emit()
+	SignalManager.bomb_amount_changed.emit()
+	SignalManager.yin_yang_changed.emit()
+	SignalManager.percentage_changed.emit()
+	
 func new_game() -> void:
+	reset_all()
 	GameData.set_start_square(3, GameData.player_pos)
 	
 	SignalManager.update_visuals.emit()

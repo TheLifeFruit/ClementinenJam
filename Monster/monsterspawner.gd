@@ -51,6 +51,8 @@ func power_up_spawn(type: String = "", spawn_panel_state: int = 1, outside: bool
 	if not outside:
 		grid_pos = GameData.player_grid.keys().pick_random()
 		var spawned_on_state = GameData.grid_data.get_panel_state(grid_pos)
+		if GameData.occupation_data.has(grid_pos):
+			return false
 		if spawned_on_state != spawn_panel_state:
 			return false
 	else:
@@ -158,8 +160,6 @@ func _on_tick() -> void:
 		#spawn(entity)
 		#entity = MONSTER_JUMPER.instantiate()
 		#spawn(entity)
-		
-		
 		
 		power_up_spawn("light_bomb")
 		# Execute logic on specific tick intervals (e.g., every 10 ticks)
