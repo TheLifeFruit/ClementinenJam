@@ -44,14 +44,14 @@ func cycle() -> void:
 
 func game_over() -> void:
 	printerr("GAME OVER")
-	var game_over  = MAIN_MENU.instantiate()
+	var game_over = MAIN_MENU.instantiate()
 	add_child(game_over)
 	SignalManager.game_over.emit()
 
 
 func money_payout(increase: float) -> void:
 	GameData.player_currency += increase
-	SignalManager.currency_changed.emit()
+	SignalManager.currency_changed.emit(increase)
 
 
 

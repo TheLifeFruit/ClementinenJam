@@ -25,9 +25,15 @@ func _ready() -> void:
 	
 	percentage_bar.texture_progress = tex
 
-func update_currency_label() -> void:
+func update_currency_label(delta_coins: float = 0) -> void:
+	print(GameData.player_currency, "+", delta_coins)
 	var currency: int = int(GameData.get("player_currency"))
-	currency_label.text = str(currency, " coins")
+	if delta_coins == 0:
+		currency_label.text = str(currency, " coins")
+	elif delta_coins > 0:
+		currency_label.text = str(currency, " coins +(", delta_coins, ")")
+	elif delta_coins > 0:
+		currency_label.text = str(currency, " coins -(", abs(delta_coins), ")")
 
 
 func update_percentage_label(percentage: float) -> void:

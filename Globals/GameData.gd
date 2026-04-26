@@ -103,7 +103,7 @@ func get_price(grid_pos: Vector2i) -> int:
 
 func pay_price(price: int) -> void:
 	player_currency -= price
-	SignalManager.currency_changed.emit()
+	SignalManager.currency_changed.emit( -price)
 
 ## Returns number of player owned panels
 func get_player_panels() -> int:
@@ -131,7 +131,7 @@ func get_corrupted_player_panels() -> int:
 
 func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 	if dmg > 0:
-		if occupation_data.has(grid_pos):
+		if occupation_data.has(grid_pos) and occupation_data[grid_pos] != null:
 			occupation_data[grid_pos].remove(dmg)
 	if (state == 1 and not player_grid.has(grid_pos)):
 		return
