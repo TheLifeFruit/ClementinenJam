@@ -42,6 +42,7 @@ var game_over_perc: float = 0.25
 var wave_cycle: int = 0
 var max_clock_offset: float = 0.3
 
+var erased: bool = false
 
 
 """
@@ -173,6 +174,8 @@ func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 			occupation_data[grid_pos].remove(dmg)
 	if (state == 1 and not player_grid.has(grid_pos)):
 		return
+	if (grid_data.panel_grid[grid_pos] == -1 and player_grid.has(grid_pos) and dmg < 5):
+		return
 	grid_data.change_panel_state(grid_pos, state)
 	
 
@@ -180,16 +183,19 @@ func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 
 ## Use in combination with powerups
 func reset_player_field() -> void:
-	yin = false
-	yang = false
-	SignalManager.yin_yang_changed.emit()
-	wave_cycle = 0
+	
+	
 	for pos in player_grid:
 		SoundManager.collect_reward()
-		change_panel(pos, 1, 2)
+		change_panel(pos, 1, 5)
 		await get_tree().create_timer(0.002).timeout
-		
-		
+	
+	yin = false
+	yang = false
+	erased = false
+	wave_cycle = 0
+	SignalManager.yin_yang_changed.emit()
+	
 
 
 

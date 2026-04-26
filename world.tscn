@@ -17,6 +17,7 @@
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
 reflected_light_source = 1
+fog_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_dwbse"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)

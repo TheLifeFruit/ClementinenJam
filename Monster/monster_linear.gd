@@ -19,7 +19,8 @@ func _custom_move(move_vector: Vector2i) -> void:
 
 	if GameData.request_move(grid_pos, target_pos, self):
 		grid_pos = target_pos
-		GameData.grid_data.change_panel_state(grid_pos, 0)
+		if GameData.player_grid.has(target_pos):
+			GameData.grid_data.change_panel_state(grid_pos, 0)
 		position = GameData.go_to(grid_pos)    
 	else:
 		# Bounce / pick new direction on failure

@@ -2,7 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://ceqe18gxgqe7e" path="res://images/Glider.png" id="1_scllj"]
 [ext_resource type="Script" uid="uid://dwg0rxm3gvo3v" path="res://Monster/monster_eraser.gd" id="2_d2oo5"]
+[ext_resource type="Texture2D" uid="uid://uim8qp3qyxip" path="res://UI/light_player.png" id="3_cr1t1"]
 
 [node name="Monster_Eraser" type="Sprite2D" unique_id=1442375875]
+scale = Vector2(4, 4)
 texture = ExtResource("1_scllj")
 script = ExtResource("2_d2oo5")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1764555238]
+color = Color(0.9035742, 0.3712151, 0.31331995, 1)
+texture = ExtResource("3_cr1t1")

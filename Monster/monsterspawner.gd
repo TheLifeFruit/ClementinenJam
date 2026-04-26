@@ -3,6 +3,7 @@ extends Node2D
 const MONSTER_LIN = preload("res://Monster/Monster_linear.tscn")
 const MONSTER_JUMPER = preload("uid://deaewn4c23uc7")
 const MONSTER_PLAYER = preload("res://Monster/Monster_player.tscn")
+const MONSTER_ERASER = preload("res://Monster/monster_eraser.tscn")
 
 const LIGHT_BOMB = preload("res://PowerUps/Light_bomb.tscn")
 const LAMP = preload("res://PowerUps/BasicLamp.tscn")
@@ -12,13 +13,6 @@ const YIN_YANG = preload("res://PowerUps/YinYang.tscn")
 
 var flag: int = 0
 
-var mob_weights: Dictionary = {
-	1: {
-		"lin": 2,
-		"laser": 2,
-		"eraser": 2,
-	}
-}
 
 
 var power_ups: Dictionary = {
@@ -28,10 +22,11 @@ var power_ups: Dictionary = {
 	"light_bomb": LIGHT_BOMB,
 }
 
+
 var mobs: Dictionary = {
 	"lin": YIN_YANG,
 	"laser": YIN_YANG,
-	"eraser": LAMP,
+	"eraser": MONSTER_ERASER,
 }
 
 
@@ -124,11 +119,11 @@ func spawn_yin() -> void:
 	power_up_spawn("yin", 1, false)
 
 func spawn_yang() -> void:
-	power_up_spawn("yang", 0, false)
+	power_up_spawn("yang", -1, false)
 
-
-
-
+func spawn_eraser() -> void:
+	var eraser_node = MONSTER_ERASER.instantiate()
+	spawn(eraser_node, -1)
 
 
 
@@ -160,7 +155,7 @@ func spawn_cluster_1_2() -> void:
 func _on_tick() -> void:
 	
 	if Clock.current_tick % 10 == 0:
-		spawn_cluster_1_1()
+		spawn_eraser()
 		#var entity = MONSTER_PLAYER.instantiate()
 		#spawn(entity)
 		#entity = MONSTER_JUMPER.instantiate()
