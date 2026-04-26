@@ -1,7 +1,9 @@
 [gd_resource type="LabelSettings" format=3 uid="uid://c82dv0c14vb5j"]
 
-[ext_resource type="FontFile" uid="uid://8cixemodoavi" path="res://Font/Jersey10-Regular.ttf" id="1_ksitu"]
+[ext_resource type="FontFile" uid="uid://c73b7m4mioj2t" path="res://UI/Basal.ttf" id="1_ksitu"]
 
 [resource]
 font = ExtResource("1_ksitu")
 font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)

@@ -21,7 +21,7 @@ var player_grid: Dictionary = {} # Vec2i -> bool
 
 var inventory: Dictionary = {"Bombe": 0,}
 
-var player_currency: float = 1
+var player_currency: float = 0
 
 
 var power_ups: Dictionary = {} # type -> int (amount)
@@ -37,7 +37,7 @@ var yin: bool = false
 var yang: bool = false
 
 
-var game_over_perc: float = 0.1
+var game_over_perc: float = 0.25
 
 var wave_cycle: int = 0
 var max_clock_offset: float = 0.3
