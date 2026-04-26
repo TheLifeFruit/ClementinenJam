@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://crlwfmts8tlju" path="res://Grid/outline.tscn" id="4_aqk2v"]
 [ext_resource type="Script" uid="uid://d3ictyoameasn" path="res://ui.gd" id="5_036b0"]
 [ext_resource type="Material" uid="uid://bqy77wowqig05" path="res://UI/actual_ui.tres" id="5_wse8f"]
-[ext_resource type="Texture2D" uid="uid://ccqr2f2tp4270" path="res://images/bottle.png" id="6_dwbse"]
+[ext_resource type="Texture2D" uid="uid://c8oxxuqac3w8g" path="res://images/bottle.png" id="6_dwbse"]
 [ext_resource type="FontFile" uid="uid://c73b7m4mioj2t" path="res://UI/Basal.ttf" id="6_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://crdcn0ko2hcde" path="res://UI/light_player2.png" id="6_ic0uy"]
 [ext_resource type="LabelSettings" uid="uid://c82dv0c14vb5j" path="res://Font/new_label_settings.tres" id="6_pkg7o"]

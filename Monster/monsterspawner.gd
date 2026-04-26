@@ -24,9 +24,22 @@ var power_ups: Dictionary = {
 
 
 var mobs: Dictionary = {
-	"lin": YIN_YANG,
-	"laser": YIN_YANG,
+	"lin": MONSTER_LIN,
+	"laser": MONSTER_PLAYER,
 	"eraser": MONSTER_ERASER,
+}
+
+var mob_weight: Dictionary = {
+	"lin": 5,
+	"laser": 1,
+	"eraser": 3,
+}
+
+
+var mob_cost: Dictionary = {
+	"lin": 1,
+	"laser": 9,
+	"eraser": 6,
 }
 
 
@@ -40,8 +53,13 @@ func _ready() -> void:
 	Clock.loaded.connect(power_up_spawn)
 	for pwer_up in power_ups:
 		GameData.power_ups[pwer_up] = 0
+	SignalManager.reset_grid.connect(rare_wave)
 	
 
+func rare_wave() -> void:
+	flag = false
+	if randf_range(0, 1) > 0.95:
+		flag = true
 
 func power_up_spawn(type: String = "", spawn_panel_state: int = 1, outside: bool = false) -> bool:
 	if not power_ups.has(type):
@@ -125,6 +143,11 @@ func spawn_eraser() -> void:
 	var eraser_node = MONSTER_ERASER.instantiate()
 	spawn(eraser_node, -1)
 
+func spawn_mob_by_type(type: String) -> void:
+	if not mobs.has(type):
+		return
+	var mob = mobs[type].instantiate()
+	spawn(mob)
 
 
 func spawn_cluster_1_1() -> void:
@@ -150,28 +173,49 @@ func spawn_cluster_1_2() -> void:
 		var lin_node = MONSTER_LIN.instantiate()
 		spawn_logic(lin_node, dir, grid_pos + offset)
 
+func get_random_mob_type() -> String:
+	var total_weight: float = 0.0
+	for weight in mob_weight.values():
+		total_weight += weight
+	
+	var roll = randf() * total_weight
+	var current_sum = 0.0
+	
+	for mob_type in mob_weight:
+		current_sum += mob_weight[mob_type]
+		if roll <= current_sum:
+			return mob_type
+			
+	return "" # Fallback
 
+
+## get mobs
+func get_mob_value(x: float) -> float:
+	var max_val = 10.0
+	var k = 11.5
+	return max_val * (x / (x + k))
 
 func _on_tick() -> void:
+	if flag:
+		
+		
+		return
 	
-	if Clock.current_tick % 10 == 0:
-		spawn_eraser()
-		#var entity = MONSTER_PLAYER.instantiate()
-		#spawn(entity)
-		#entity = MONSTER_JUMPER.instantiate()
-		#spawn(entity)
-		
-		power_up_spawn("light_bomb")
-		# Execute logic on specific tick intervals (e.g., every 10 ticks)
-		
-		
+	
+	if Clock.current_tick % 20 == 0:
+		var mob_value = get_mob_value(GameData.wave_cycle)
+		while (mob_value > 0 ) :
+			var type = get_random_mob_type()
+			mob_value -= mob_cost[type]
+			spawn_mob_by_type(type)
+	
+	if Clock.current_tick % 60 == 0:
 		if not GameData.power_ups["yin"]:
 			spawn_yin()
 		elif not GameData.power_ups["yang"]:
 			spawn_yang()
-		
-		if Clock.current_tick % 10 == 0:
-			
+	if Clock.current_tick % 20 == 0:
+		if randf_range(0, 1) > 0.84:
 			power_up_spawn("light_bomb")
-			
-	
+		
+		

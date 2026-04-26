@@ -183,8 +183,6 @@ func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 
 ## Use in combination with powerups
 func reset_player_field() -> void:
-	
-	
 	for pos in player_grid:
 		SoundManager.collect_reward()
 		change_panel(pos, 1, 5)
