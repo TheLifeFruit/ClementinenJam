@@ -48,6 +48,6 @@ func _on_tick() -> void:
 		add_child(moster_jumper)
 		add_child(monster_lin)
 		if Clock.current_tick % 10 == 0:
-			power_up_spawn(LIGHT_BOMB)
+			power_up_spawn(H_POWERUP)
 
 	

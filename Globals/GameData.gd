@@ -16,7 +16,7 @@ var player_grid: Dictionary = {} # Vec2i -> bool
 var inventory: Dictionary = {"Bombe": 0,}
 
 var player_currency: float = 10
-var paint_bombs: int = 1000
+var paint_bombs: int = 0
 
 
 var game_over_perc: float = 0.3
@@ -132,6 +132,9 @@ func get_corrupted_player_panels() -> int:
 func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 	if dmg > 0:
 		if occupation_data.has(grid_pos):
+			if occupation_data[grid_pos] == null:
+				printerr("[ERROR] occupation corruption on: ", grid_pos)
+				occupation_data.erase(grid_pos)
 			occupation_data[grid_pos].remove(dmg)
 	if (state == 1 and not player_grid.has(grid_pos)):
 		return

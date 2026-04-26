@@ -6,3 +6,5 @@
 [node name="Sprite2D" type="Sprite2D" unique_id=1820437679]
 texture = ExtResource("1_olfu3")
 script = ExtResource("2_j00q2")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1160895997]

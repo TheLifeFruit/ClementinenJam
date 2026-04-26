@@ -39,6 +39,11 @@ height = 50
 [sub_resource type="LabelSettings" id="LabelSettings_036b0"]
 font_color = Color(0.21568628, 0.14117648, 1, 1)
 
+[sub_resource type="Environment" id="Environment_036b0"]
+ambient_light_energy = 0.11
+ssao_enabled = true
+fog_enabled = true
+
 [node name="World" type="Node2D" unique_id=970723892]
 script = ExtResource("1_fj7yv")
 
@@ -105,3 +110,9 @@ offset_right = 2067.0
 offset_bottom = 630.0
 text = "Perc"
 label_settings = SubResource("LabelSettings_036b0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=35147731]
+environment = SubResource("Environment_036b0")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1887560017]
+position = Vector2(567, 322)
