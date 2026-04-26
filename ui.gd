@@ -88,9 +88,8 @@ func update_amount() -> void:
 
 func update_percentage_label(percentage: float) -> void:
 	var bar_percentage: float = remap(percentage,GameData.game_over_perc, 1 , 0.0, 1.0)-0.01
-	#percentage_label.add_theme_color_override("font_color", Color.BLACK)
-	#percentage_label.text = str(round(bar_percentage * 100), "%  ")
-	percentage_bar.value = bar_percentage * 100
 	
+	percentage_bar.value = bar_percentage*100.0
+	print(bar_percentage*100.0)
 	var bar_color = Color.GREEN.lerp(Color.RED, 1.0 - bar_percentage)
 	percentage_bar.tint_progress = bar_color

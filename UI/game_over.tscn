@@ -5,26 +5,45 @@
 [node name="GameOver" type="CanvasLayer" unique_id=1921192890]
 script = ExtResource("1_jawqf")
 
+[node name="Label" type="Label" parent="." unique_id=1629268741]
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 46.0
+offset_bottom = 31.0
+text = "score"
+
 [node name="Control" type="Control" parent="." unique_id=752353120]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=898249396]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=17120082]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="Control/HBoxContainer" unique_id=378157522]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/HBoxContainer/Control" unique_id=898249396]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 4.0
+offset_bottom = 40.0
 color = Color(1, 1, 1, 0.1882353)
 
-[node name="Label" type="Label" parent="Control" unique_id=967540974]
+[node name="Label" type="Label" parent="Control/HBoxContainer/Control" unique_id=967540974]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 9.0
+offset_bottom = 31.0
 
-[node name="Restart" type="Button" parent="Control" unique_id=1270281180]
+[node name="Restart" type="Button" parent="Control/HBoxContainer/Control" unique_id=1270281180]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 13.0
+offset_right = 21.0
+offset_bottom = 40.0
 
-[connection signal="pressed" from="Control/Restart" to="Control" method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/Control/Restart" to="Control" method="_on_restart_pressed"]
