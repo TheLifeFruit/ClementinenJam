@@ -18,8 +18,12 @@ signal currency_changed(delta_currency: float)
 @warning_ignore("unused_signal")
 signal percentage_changed(new_percentage: float)
 
+
 @warning_ignore("unused_signal")
 signal effect_dark_splash(spawn_position: Vector2)
+
+@warning_ignore("unused_signal")
+signal player_damage()
 
 @warning_ignore("unused_signal")
 signal bomb_amount_changed()

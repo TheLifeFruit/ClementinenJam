@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 const PLAYER = preload("uid://bpkpo87ntubhe")
 
 const GAME_OVER = preload("res://UI/game_over.tscn")
@@ -24,11 +24,11 @@ func _ready() -> void:
 
 
 func new_game() -> void:
-	GameData.set_start_square(4, GameData.player_pos)
+	GameData.set_start_square(3, GameData.player_pos)
 	
 	SignalManager.update_visuals.emit()
 	Clock.tick.connect(cycle)
-	
+	SignalManager.player_damage.connect(game_over)
 	
 	var player = PLAYER.instantiate()
 	add_child(player)
@@ -49,7 +49,7 @@ func cycle() -> void:
 	SignalManager.percentage_changed.emit(percentage_clean)
 	
 	
-	money_payout(clean * percentage_clean * 0.005)
+	money_payout(clean * percentage_clean)
 	
 
 
@@ -62,6 +62,7 @@ func game_over() -> void:
 
 func money_payout(increase: float) -> void:
 	GameData.player_currency += increase
+	GameData.player_increase = increase
 	SignalManager.currency_changed.emit()
 
 
@@ -78,6 +79,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("SPRAY"):
 		spray()
 		
+
 
 func attempt_player_move(dir: Vector2i) -> void:
 	var target_pos: Vector2i = GameData.player_pos + dir

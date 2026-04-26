@@ -21,12 +21,18 @@ var player_grid: Dictionary = {} # Vec2i -> bool
 
 var inventory: Dictionary = {"Bombe": 0,}
 
-var player_currency: float = 10
+var player_currency: float = 1
 
 
 var power_ups: Dictionary = {} # type -> int (amount)
 
+
+var player_increase: float = 0
+
 var paint_bombs: int = 1000
+
+var player_field = [1,7,5,11]
+
 var yin: bool = false
 var yang: bool = false
 
@@ -89,6 +95,16 @@ func try_to_buy_panel(grid_pos: Vector2i) -> bool:
 	
 	pay_price(get_price(grid_pos))
 	player_grid[grid_pos] = true
+	if grid_pos.x > player_field[1]:
+		player_field[1] = grid_pos.x
+	if grid_pos.x < player_field[0]:
+		player_field[0] = grid_pos.x
+	if grid_pos.y > player_field[3]:
+		player_field[3] = grid_pos.y
+	if grid_pos.y < player_field[2]:
+		player_field[2] = grid_pos.y
+	print(grid_pos)
+	print(player_field)
 	return true
 
 
@@ -105,8 +121,8 @@ func has_neighbours(grid_pos: Vector2i) -> bool:
 	return false
 
 func set_start_square(l2: int, middle: Vector2i) -> void:
-	for x in range(middle.x - l2, middle.x + l2):
-		for y in range(middle.y - l2, middle.y + l2):
+	for x in range(middle.x - l2, middle.x + l2+1):
+		for y in range(middle.y - l2, middle.y + l2+1):
 			grid_data.panel_grid[Vector2i(x,y)] =  1
 			player_grid[Vector2i(x,y)] = true
 	SignalManager.rebuild_player_grid.emit()
@@ -116,7 +132,7 @@ func set_start_square(l2: int, middle: Vector2i) -> void:
 
 
 func get_price(grid_pos: Vector2i) -> int:
-	return 1
+	return ((grid_pos.x-8)**2+(grid_pos.y-4)**2)**2
 
 
 func pay_price(price: int) -> void:
