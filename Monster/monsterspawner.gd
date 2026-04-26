@@ -202,7 +202,7 @@ func _on_tick() -> void:
 		return
 	
 	
-	if Clock.current_tick % 20 == 0:
+	if Clock.current_tick % 16 == 0:
 		var mob_value = get_mob_value(GameData.wave_cycle)
 		while (mob_value > 0 ) :
 			var type = get_random_mob_type()
