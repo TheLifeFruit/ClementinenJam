@@ -2,9 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://c3sh8gsnj5y30" path="res://images/eval.png" id="1_olfu3"]
 [ext_resource type="Script" uid="uid://cwiweh8klvtcs" path="res://PowerUps/basic_lamp.gd" id="2_j00q2"]
+[ext_resource type="Texture2D" uid="uid://uim8qp3qyxip" path="res://UI/light_player.png" id="3_v6vke"]
 
-[node name="Sprite2D" type="Sprite2D" unique_id=1820437679]
+[node name="Sprite2D3" type="Sprite2D" unique_id=1820437679]
 texture = ExtResource("1_olfu3")
 script = ExtResource("2_j00q2")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1160895997]
+[node name="SpotLight3D" type="PointLight2D" parent="." unique_id=528749921]
+texture = ExtResource("3_v6vke")

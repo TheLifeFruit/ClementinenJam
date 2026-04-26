@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dduuaxt874jr0"]
 
-[ext_resource type="Script" uid="uid://wg4b2r4fwooe" path="res://main_menu.gd" id="1_p8ccj"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_p8ccj"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=666649796]
 script = ExtResource("1_p8ccj")
@@ -20,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 1, 1, 0.34901962)
 
 [node name="NEW GAME" type="Button" parent="Control" unique_id=1927421289]
 layout_mode = 1

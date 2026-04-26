@@ -16,7 +16,7 @@ func display_price():
 		for row in range(3):
 			var newpos = pos + Vector2i(col,-row)
 			if not GameData.player_grid.has(newpos):
-				kids[(row * 3) + col].text = str(format_short_number(GameData.get_price(newpos))) + "$"
+				kids[(row * 3) + col].text = str(format_short_number(GameData.get_price(newpos)))
 			else:
 				kids[(row * 3) + col].text = ""
 		

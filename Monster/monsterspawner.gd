@@ -101,14 +101,19 @@ func spawn_yang() -> void:
 	power_up_spawn("yang", 0, false)
 
 func _on_tick() -> void:
-	if Clock.current_tick % 10 == 0:
-
-		#var entity = MONSTER_PLAYER.instantiate()
-		#spawn(entity)
-		#entity = MONSTER_JUMPER.instantiate()
-		#spawn(entity)
-		var entity = MONSTER_LIN.instantiate()
+	var entity
+	if Clock.current_tick % 3 == 0:
+		entity = MONSTER_LIN.instantiate()
 		spawn(entity)
+	if Clock.current_tick % 5 == 0:
+		entity = MONSTER_PLAYER.instantiate()
+		spawn(entity)
+		entity = MONSTER_JUMPER.instantiate()
+		spawn(entity)
+		
+	if Clock.current_tick % 20 == 0:
+
+		
 		power_up_spawn("light_bomb")
 		# Execute logic on specific tick intervals (e.g., every 10 ticks)
 		

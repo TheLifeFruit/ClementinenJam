@@ -29,7 +29,7 @@ var power_ups: Dictionary = {} # type -> int (amount)
 
 var player_increase: float = 0
 
-var paint_bombs: int = 1000
+var paint_bombs: int = 2
 
 var player_field = [1,7,5,11]
 
@@ -132,7 +132,7 @@ func set_start_square(l2: int, middle: Vector2i) -> void:
 
 
 func get_price(grid_pos: Vector2i) -> int:
-	return ((grid_pos.x-8)**2+(grid_pos.y-4)**2)**2
+	return ((grid_pos.x-8)**2+(grid_pos.y-4)**2)**2/4
 
 
 func pay_price(price: int) -> void:
@@ -180,6 +180,9 @@ func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 
 ## Use in combination with powerups
 func reset_player_field() -> void:
+	yin = false
+	yang = false
+	SignalManager.yin_yang_changed.emit()
 	wave_cycle = 0
 	for pos in player_grid:
 		SoundManager.collect_reward()
