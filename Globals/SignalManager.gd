@@ -12,6 +12,7 @@ signal currency_changed()
 
 signal percentage_changed(new_percentage: float)
 
+signal player_damage()
 
 signal game_over()
 

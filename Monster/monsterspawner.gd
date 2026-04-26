@@ -18,36 +18,70 @@ func _ready() -> void:
 	
 		
 
-func power_up_spawn(entity):
+func power_up_spawn(entity_inst):
 	var grid_pos = GameData.player_grid.keys().pick_random()
 	if GameData.grid_data.get_panel_state(grid_pos) == 0:
 		#print("Spawnd on black")
 		return
-	
-	var entity_inst = entity.instantiate()
 	entity_inst.position = GameData.go_to(grid_pos)
 	entity_inst.grid_pos = grid_pos
 	add_child(entity_inst)
 	pass
 	
 	
-func spawn():
-	var moster_jumper = MONSTER_JUMPER.instantiate()
-	add_child(moster_jumper)
+func spawn(entity):
+	
+	var field = GameData.player_field
+	var dir = randi_range(0, 3)
+	var grid_pos
+	# Mapped to match base class dirs: 0: DOWN | 1: RIGHT | 2: DOWN | 3: LEFT
+	if dir == 0:
+		var pos = randi_range(field[2], field[3])
+		grid_pos =Vector2i (pos, field[1])
+		grid_pos.y += 4
+	
+	if dir == 2:
+		var pos = randi_range(field[2], field[3])
+		grid_pos =Vector2i (pos, field[0])
+		grid_pos.y -= 4
+		
+	if dir == 1:
+		var pos = randi_range(field[0], field[1])
+		grid_pos =Vector2i (field[2], pos)
+		grid_pos.x -= 4
+	
+	if dir == 3:
+		var pos = randi_range(field[0], field[1])
+		grid_pos =Vector2i (field[3], pos)
+		grid_pos.x += randi_range(1,4)
+
+
+	
+	
+	
+	entity.dir = dir
+	entity.rotation = entity.turn_by_int(dir)
+	GameData.occupation_data[grid_pos] = entity
+	entity.grid_pos = grid_pos
+	entity.position = GameData.go_to(grid_pos)
+	add_child(entity)
+	entity.visible = true
+	
 	
 
 
 
 func _on_tick() -> void:
-
-	# Execute logic on specific tick intervals (e.g., every 10 ticks)
 	if Clock.current_tick % 10 == 0:
-		var monster_lin = MONSTER_LIN.instantiate()
-		var moster_jumper = MONSTER_JUMPER.instantiate()
-		var moster_player = MONSTER_PLAYER.instantiate()
-		add_child(moster_player)
-		add_child(monster_lin)
-		if Clock.current_tick % 10 == 0:
-			power_up_spawn(LIGHT_BOMB)
+		var entity = MONSTER_PLAYER.instantiate()
+		spawn(entity)
+		entity = MONSTER_JUMPER.instantiate()
+		spawn(entity)
+		entity = MONSTER_LIN.instantiate()
+		spawn(entity)
+		entity = LIGHT_BOMB.instantiate()
+		power_up_spawn(entity)
+		# Execute logic on specific tick intervals (e.g., every 10 ticks)
+		
 
 	

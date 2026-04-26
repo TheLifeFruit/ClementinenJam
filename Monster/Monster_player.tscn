@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://bq6u4p3as3of7" path="res://Monster/monster_player.gd" id="2_b6c21"]
 [ext_resource type="Texture2D" uid="uid://dhfwbqguwpdun" path="res://images/miniRect.png" id="3_njsvy"]
 
+[sub_resource type="Curve" id="Curve_njsvy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.95652175, 0.23595512), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Sprite2D" type="Sprite2D" unique_id=690838564]
 scale = Vector2(4, 4)
 texture = ExtResource("1_b6c21")
@@ -13,3 +17,22 @@ script = ExtResource("2_b6c21")
 visible = false
 position = Vector2(0, 300)
 texture = ExtResource("3_njsvy")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="." unique_id=765939015]
+emitting = false
+amount = 128
+texture = ExtResource("1_b6c21")
+one_shot = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 20.2
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_njsvy")
+hue_variation_min = -1.0
+hue_variation_max = 1.0

@@ -7,21 +7,6 @@ var wait: int = 7
 func _ready() -> void:
 	super() # Generates UUID from base class
 	
-	dir = randi_range(0, 3)
-	var pos = randi_range(-spawn_width, spawn_width)
-	
-	# Mapped to match base class dirs: 0: UP | 1: RIGHT | 2: DOWN | 3: LEFT
-	if dir == 0:
-		grid_pos = GameData.player_pos + Vector2i(pos, OUT_Y)
-	elif dir == 1:
-		grid_pos = GameData.player_pos + Vector2i(-OUT_X, pos)
-	elif dir == 2:
-		grid_pos = GameData.player_pos + Vector2i(pos, -OUT_Y)
-	else:
-		grid_pos = GameData.player_pos + Vector2i(OUT_X, pos)
-
-	rotation = turn_by_int(dir)
-
 func _on_tick() -> void:
 		var dif: Vector2i = GameData.player_pos - grid_pos
 		if total_moves >= 0:
@@ -42,14 +27,63 @@ func _on_tick() -> void:
 				else:
 					dir = 2 if dif.y > 0 else 0
 				rotation = rot[dir]
+				get_child(0).modulate.a = 1.1-wait/10.0
 				get_child(0).visible = true
 			elif wait%2 == 0:
 				get_child(0).visible = false
 				if wait == 0:
-					print("fire")
+					sprint(grid_pos,grid_pos+ 64*dirs[dir])
 			
 			wait -= 1
-		need_delete()
+
+
+func sprint(from_pos: Vector2i, to_pos: Vector2i) -> void:
+	
+	# 3. Visual Lerp (Tween)
+
+	var target_pixel_pos = Vector2(GameData.go_to(to_pos)) 
+
+	var tween = create_tween()
+	get_child(1).emitting = true
+	# The float 0.15 is the duration in seconds. Adjust for speed.
+	tween.tween_property(self, "position", target_pixel_pos, 0.3)
+	await tween.finished
+	# Calculate direction and distance of the sprint
+	var diff: Vector2i = to_pos - from_pos
+	var step_dir: Vector2i = Vector2i(sign(diff.x), sign(diff.y))
+	var distance: int = max(abs(diff.x), abs(diff.y))
+
+	# 1. Logic and Destruction Loop
+	for i in range(1, distance + 1):
+		var current_step: Vector2i = from_pos + (step_dir * i)
+
+		# Turn the panel black
+		GameData.grid_data.change_panel_state(current_step, 0)
+
+		# Check if player is hit
+		if current_step == GameData.player_pos:
+			SignalManager.player_damage.emit() # Triggers your existing death sequence
+
+		# Check for other objects/monsters and destroy them
+		if GameData.occupation_data.has(current_step):
+			var entity = GameData.occupation_data[current_step]
+			if entity != self:
+				GameData.occupation_data.erase(current_step)
+				# Call inherited remove if applicable, otherwise force free
+				if entity != null:
+					if entity.has_method("remove"):
+						entity.remove()
+					else:
+						entity.queue_free()
+
+	# 2. Update Logical Position
+	GameData.occupation_data.erase(grid_pos)
+	grid_pos = to_pos
+	remove()
+
+	
+	
+
 
 func _custom_move(move_vector: Vector2i) -> void:
 	rotation = turn_by_int(dir)
@@ -62,7 +96,3 @@ func _custom_move(move_vector: Vector2i) -> void:
 	else:
 		# Pick new direction if blocked
 		dir = randi_range(0, 3)
-
-func need_delete() -> void:
-	if abs(grid_pos.x - GameData.player_pos.x) > OUT_X * 1.5 or abs(grid_pos.y - GameData.player_pos.y) > OUT_Y * 1.5:
-		remove()

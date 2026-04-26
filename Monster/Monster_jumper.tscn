@@ -7,3 +7,12 @@
 scale = Vector2(4, 4)
 texture = ExtResource("1_rk3f4")
 script = ExtResource("2_rk3f4")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=734379105]
+visible = false
+amount = 64
+texture = ExtResource("1_rk3f4")
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0

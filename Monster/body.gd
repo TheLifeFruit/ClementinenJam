@@ -19,11 +19,14 @@ func _ready() -> void:
 	Clock.tick.connect(_on_tick)
 	SignalManager.game_over.connect(remove)
 	#uuid = GameData.generate_uuid_v4()
+	
+	
 
 func remove(dmg_type: int = 0) -> void:
 	if type == "object" and dmg_type < 2:
 		return
-	
+
+	pass
 	
 	GameData.occupation_data.erase(grid_pos)
 	SignalManager.game_over.disconnect(remove)
