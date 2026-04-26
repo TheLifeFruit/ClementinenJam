@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ccqr2f2tp4270" path="res://images/bottle.png" id="6_dwbse"]
 [ext_resource type="FontFile" uid="uid://c73b7m4mioj2t" path="res://UI/Basal.ttf" id="6_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://crdcn0ko2hcde" path="res://UI/light_player2.png" id="6_ic0uy"]
-[ext_resource type="Texture2D" uid="uid://cnesaim46fqbg" path="res://images/YinandYang.png" id="8_ioo17"]
+[ext_resource type="Texture2D" uid="uid://cnesaim46fqbg" path="res://images/YinYang.png" id="8_ioo17"]
 [ext_resource type="Texture2D" uid="uid://bigkh7yuy1nuf" path="res://UI/light.png" id="9_ioo17"]
 
 [sub_resource type="Environment" id="Environment_gbfbk"]
@@ -188,7 +188,8 @@ offset_right = 1016.0
 offset_bottom = 39.0
 texture = ExtResource("6_dwbse")
 
-[node name="TextureRect" type="TextureRect" parent="UI-LAYER/UI" unique_id=1879356271]
+[node name="YinYang" type="TextureRect" parent="UI-LAYER/UI" unique_id=1879356271]
+unique_name_in_owner = true
 material = ExtResource("5_wse8f")
 use_parent_material = true
 layout_mode = 0

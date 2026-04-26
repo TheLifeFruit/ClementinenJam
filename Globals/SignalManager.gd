@@ -14,6 +14,10 @@ signal percentage_changed(new_percentage: float)
 
 signal bomb_amount_changed()
 
+signal yin_yang_changed()
+
+signal reset_grid()
+
 signal game_over()
 
 signal new_game()

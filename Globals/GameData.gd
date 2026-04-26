@@ -17,9 +17,13 @@ var inventory: Dictionary = {"Bombe": 0,}
 
 var player_currency: float = 10
 var paint_bombs: int = 1000
-
+var yin: bool = false
+var yang: bool = false
 
 var game_over_perc: float = 0.3
+
+var wave_cycle: int = 0
+
 
 
 
@@ -49,6 +53,7 @@ func generate_uuid_v4() -> String:
 		b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7],
 		b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15]
 	]
+
 
 
 
@@ -142,8 +147,14 @@ func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 
 ## Use in combination with powerups
 func reset_player_field() -> void:
+	wave_cycle = 0
+	var delay_counter: float = 0
 	for pos in player_grid:
-		grid_data.panel_grid[pos] = 1
+		change_panel(pos, 1, 2)
+		delay_counter += 0.002
+		if grid_data.panel_grid[pos].has_method("cleansing"):
+			grid_data.panel_grid[pos].cleansing(delay_counter)
+		
 
 
 

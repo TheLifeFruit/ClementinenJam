@@ -1,6 +1,10 @@
 extends Sprite2D
-
 var grid_pos = Vector2i.ZERO
+@export var type: bool
+
+const YANG = preload("res://images/yang.png") # white
+
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,6 +14,9 @@ func _ready() -> void:
 	
 	grid_pos = GameData.player_grid.keys().pick_random()
 	position = GameData.go_to(grid_pos)
+	
+	if type == true:
+		texture = YANG #white
 	
 	
 
@@ -22,6 +29,10 @@ func check_onit():
 
 func process_modi():
 	if grid_pos == GameData.player_pos:
-		GameData.paint_bombs += 1
-		SoundManager.play_powerup_sound1()
+		if type:
+			GameData.yin = true
+		else:
+			GameData.yang = true
+		SignalManager.yin_yang_changed.emit()
+		SoundManager.play_powerup_sound2()
 		self.queue_free()

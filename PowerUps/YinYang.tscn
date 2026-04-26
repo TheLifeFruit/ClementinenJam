@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://pn4o8g4fuat"]
+
+[ext_resource type="Texture2D" uid="uid://cica1bhgjbm0j" path="res://images/Yin.png" id="1_6mfxq"]
+[ext_resource type="Script" uid="uid://doxjo7y4cuvlm" path="res://PowerUps/yin_yang.gd" id="2_k1q5g"]
+
+[node name="YinYang" type="Sprite2D" unique_id=1929615132]
+scale = Vector2(4, 4)
+texture = ExtResource("1_6mfxq")
+script = ExtResource("2_k1q5g")

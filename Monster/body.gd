@@ -12,6 +12,8 @@ var rot: Array[float] = [0, -PI/2, PI, +PI/2]
 var OUT_X: int = 0 
 var OUT_Y: int = 0
 
+var unload_flag: bool = false
+
 
 func _ready() -> void:
 	OUT_X = get_parent().OUT_X
@@ -21,7 +23,7 @@ func _ready() -> void:
 	#uuid = GameData.generate_uuid_v4()
 
 func remove(dmg_type: int = 0) -> void:
-	if type == "object" and dmg_type < 2:
+	if type == "object" and dmg_type < 5:
 		return
 	
 	if type == "monster_beam":
