@@ -17,6 +17,7 @@
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
 reflected_light_source = 1
+fog_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_036b0"]
 content_margin_left = 0.0
@@ -128,12 +129,6 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_036b0")
-
-[node name="ColorRect" type="ColorRect" parent="UI-LAYER/UI/PanelContainer" unique_id=708365698]
-material = ExtResource("5_wse8f")
-use_parent_material = true
-layout_mode = 2
-color = Color(0.1527932, 0.415456, 0.085530825, 1)
 
 [node name="PercentageBar" type="TextureProgressBar" parent="UI-LAYER/UI/PanelContainer" unique_id=155084043]
 unique_name_in_owner = true

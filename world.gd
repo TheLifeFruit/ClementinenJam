@@ -34,6 +34,7 @@ func new_game() -> void:
 	add_child(player)
 	
 
+
 func cycle() -> void:
 	GameData.wave_cycle += 1
 	
@@ -132,7 +133,6 @@ func spray() -> void:
 		var hit_array = get_hit_cells(GameData.player_pos, angle, 3, deg_to_rad(60.0))
 		for pos in hit_array:
 			GameData.change_panel(pos, 1, 1)
-			print(pos)
 		GameData.change_panel(GameData.player_pos, 1, 0)
 		SoundManager.play_refresh_player_grid()
 

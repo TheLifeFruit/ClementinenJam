@@ -27,6 +27,8 @@ func _ready() -> void:
 func remove(dmg_type: int = 0) -> void:
 	if type == "object" and dmg_type < 5:
 		return
+	if type == "eraser" and dmg_type < 2:
+		return
 	
 	if type == "monster_beam":
 		SoundManager.play_gore2()
