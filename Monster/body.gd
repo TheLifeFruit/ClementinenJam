@@ -13,7 +13,7 @@ var OUT_X: int = 0
 var OUT_Y: int = 0
 
 var unload_flag: bool = false
-
+var clock_offset: float = randf_range(0, GameData.max_clock_offset)
 
 func _ready() -> void:
 	OUT_X = get_parent().OUT_X

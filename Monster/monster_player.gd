@@ -12,6 +12,7 @@ func _ready() -> void:
 
 
 func _on_tick() -> void:
+		await get_tree().create_timer(clock_offset).timeout
 		var dif: Vector2i = GameData.player_pos - grid_pos
 		if total_moves >= 0:
 			

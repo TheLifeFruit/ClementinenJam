@@ -6,6 +6,7 @@ func _ready() -> void:
 	super() 
 
 func _on_tick() -> void:
+	await get_tree().create_timer(clock_offset).timeout
 	if Clock.current_tick % 4 == 0:
 		if spawn == false:
 			spawn = true

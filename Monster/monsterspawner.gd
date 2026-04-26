@@ -9,12 +9,31 @@ const LAMP = preload("res://PowerUps/BasicLamp.tscn")
 
 const YIN_YANG = preload("res://PowerUps/YinYang.tscn")
 
+
+var flag: int = 0
+
+var mob_weights: Dictionary = {
+	1: {
+		"lin": 2,
+		"laser": 2,
+		"eraser": 2,
+	}
+}
+
+
 var power_ups: Dictionary = {
 	"yin": YIN_YANG,
 	"yang": YIN_YANG,
 	"lamp": LAMP,
 	"light_bomb": LIGHT_BOMB,
 }
+
+var mobs: Dictionary = {
+	"lin": YIN_YANG,
+	"laser": YIN_YANG,
+	"eraser": LAMP,
+}
+
 
 const OUT_X = 10
 const OUT_Y = 10
@@ -37,6 +56,8 @@ func power_up_spawn(type: String = "", spawn_panel_state: int = 1, outside: bool
 	if not outside:
 		grid_pos = GameData.player_grid.keys().pick_random()
 		var spawned_on_state = GameData.grid_data.get_panel_state(grid_pos)
+		if GameData.occupation_data.has(grid_pos):
+			return false
 		if spawned_on_state != spawn_panel_state:
 			return false
 	else:
@@ -54,34 +75,42 @@ func power_up_spawn(type: String = "", spawn_panel_state: int = 1, outside: bool
 	return true
 
 
-func spawn(entity):
+func spawn(entity, dir: int = -1):
+	if dir > 3 or dir < 0:
+		dir = randi_range(0, 3)
+	var grid_pos = get_rnd_grid_pos(dir)
 	
+	spawn_logic(entity, dir, grid_pos)
+
+
+func get_rnd_grid_pos (dir: int, offset: int = 4) -> Vector2i:
+	# Mapped to match base class dirs: 0: DOWN | 1: RIGHT | 2: UP | 3: LEFT
 	var field = GameData.player_field
-	var dir = randi_range(0, 3)
 	var grid_pos
-	# Mapped to match base class dirs: 0: DOWN | 1: RIGHT | 2: DOWN | 3: LEFT
 	if dir == 0:
 		var pos = randi_range(field[2], field[3])
-		grid_pos =Vector2i (pos, field[1])
-		grid_pos.y += 4
+		grid_pos = Vector2i (pos, field[1])
+		grid_pos.y += offset
 	
 	if dir == 2:
 		var pos = randi_range(field[2], field[3])
 		grid_pos =Vector2i (pos, field[0])
-		grid_pos.y -= 4
+		grid_pos.y -= offset
 		
 	if dir == 1:
 		var pos = randi_range(field[0], field[1])
 		grid_pos =Vector2i (field[2], pos)
-		grid_pos.x -= 4
+		grid_pos.x -= offset
 	
 	if dir == 3:
 		var pos = randi_range(field[0], field[1])
 		grid_pos =Vector2i (field[3], pos)
-		grid_pos.x += randi_range(1,4)
-	
-	
-	
+		grid_pos.x += offset
+	return grid_pos
+
+
+## Helper
+func spawn_logic(entity, dir, grid_pos) -> void:
 	entity.dir = dir
 	entity.rotation = entity.turn_by_int(dir)
 	GameData.occupation_data[grid_pos] = entity
@@ -89,9 +118,6 @@ func spawn(entity):
 	entity.position = GameData.go_to(grid_pos)
 	add_child(entity)
 	entity.visible = true
-	
-
-	
 
 
 func spawn_yin() -> void:
@@ -100,19 +126,45 @@ func spawn_yin() -> void:
 func spawn_yang() -> void:
 	power_up_spawn("yang", 0, false)
 
-func _on_tick() -> void:
-	var entity
-	if Clock.current_tick % 3 == 0:
-		entity = MONSTER_LIN.instantiate()
-		spawn(entity)
-	if Clock.current_tick % 5 == 0:
-		entity = MONSTER_PLAYER.instantiate()
-		spawn(entity)
-		entity = MONSTER_JUMPER.instantiate()
-		spawn(entity)
-		
-	if Clock.current_tick % 20 == 0:
 
+
+
+
+
+
+func spawn_cluster_1_1() -> void:
+	var dir = randi_range(0, 3)
+	var grid_pos = get_rnd_grid_pos(dir, 5)
+	var offsets
+	if dir == 0 or dir == 2:
+		offsets = [Vector2i.ZERO, Vector2i(1, 0), Vector2i(-1, 0)]
+	else:
+		offsets = [Vector2i.ZERO, Vector2i(0, 1), Vector2i(0, -1)]
+	
+	for offset in offsets:
+		var lin_node = MONSTER_LIN.instantiate()
+		spawn_logic(lin_node, dir, grid_pos + offset)
+
+
+
+func spawn_cluster_1_2() -> void:
+	var dir = randi_range(0, 3)
+	var grid_pos = get_rnd_grid_pos(dir,7)
+	var offsets = [Vector2i.ZERO, Vector2i(1, 1), Vector2i(-1, -1)]
+	for offset in offsets:
+		var lin_node = MONSTER_LIN.instantiate()
+		spawn_logic(lin_node, dir, grid_pos + offset)
+
+
+
+func _on_tick() -> void:
+	
+	if Clock.current_tick % 10 == 0:
+		spawn_cluster_1_1()
+		#var entity = MONSTER_PLAYER.instantiate()
+		#spawn(entity)
+		#entity = MONSTER_JUMPER.instantiate()
+		#spawn(entity)
 		
 		power_up_spawn("light_bomb")
 		# Execute logic on specific tick intervals (e.g., every 10 ticks)
@@ -127,7 +179,4 @@ func _on_tick() -> void:
 			
 			power_up_spawn("light_bomb")
 			
-
-
-
 	
