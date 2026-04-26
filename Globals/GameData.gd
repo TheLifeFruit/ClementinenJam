@@ -18,9 +18,16 @@ var inventory: Dictionary = {"Bombe": 0,}
 var player_currency: float = 10
 var player_increase: float = 0
 var paint_bombs: int = 1000
+
 var player_field = [1,7,5,11]
 
+var yin: bool = false
+var yang: bool = false
+
 var game_over_perc: float = 0.3
+
+var wave_cycle: int = 0
+
 
 
 
@@ -50,6 +57,7 @@ func generate_uuid_v4() -> String:
 		b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7],
 		b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15]
 	]
+
 
 
 
@@ -114,7 +122,7 @@ func get_price(grid_pos: Vector2i) -> int:
 
 func pay_price(price: int) -> void:
 	player_currency -= price
-	SignalManager.currency_changed.emit()
+	SignalManager.currency_changed.emit( -price)
 
 ## Returns number of player owned panels
 func get_player_panels() -> int:
@@ -142,7 +150,7 @@ func get_corrupted_player_panels() -> int:
 
 func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 	if dmg > 0:
-		if occupation_data.has(grid_pos):
+		if occupation_data.has(grid_pos) and occupation_data[grid_pos] != null:
 			occupation_data[grid_pos].remove(dmg)
 	if (state == 1 and not player_grid.has(grid_pos)):
 		return
@@ -153,8 +161,14 @@ func change_panel(grid_pos: Vector2i, state: int, dmg: int = 0) -> void:
 
 ## Use in combination with powerups
 func reset_player_field() -> void:
+	wave_cycle = 0
+	var delay_counter: float = 0
 	for pos in player_grid:
-		grid_data.panel_grid[pos] = 1
+		change_panel(pos, 1, 2)
+		delay_counter += 0.002
+		if grid_data.panel_grid[pos].has_method("cleansing"):
+			grid_data.panel_grid[pos].cleansing(delay_counter)
+		
 
 
 

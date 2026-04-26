@@ -9,6 +9,7 @@ const SPRAY = preload("res://spray.tscn")
 
 
 func _ready() -> void:
+	SignalManager.reset_grid.connect(GameData.reset_player_field)
 	SignalManager.new_game.connect(new_game)
 	var main_menu = MAIN_MENU.instantiate()
 	add_child(main_menu)
@@ -27,10 +28,13 @@ func new_game() -> void:
 	
 
 func cycle() -> void:
+	GameData.wave_cycle += 1
+	
 	var amount: float = GameData.get_player_panels()
 	var clean: float = GameData.get_clean_player_panels()
-	var corrupted: float = amount - clean
+	var _corrupted: float = amount - clean
 	var percentage_clean: float = float(clean / amount)
+	
 	
 	if (percentage_clean <= GameData.game_over_perc):
 		game_over()
@@ -44,8 +48,8 @@ func cycle() -> void:
 
 func game_over() -> void:
 	printerr("GAME OVER")
-	var game_over  = MAIN_MENU.instantiate()
-	add_child(game_over)
+	var game_over_screen = MAIN_MENU.instantiate()
+	add_child(game_over_screen)
 	SignalManager.game_over.emit()
 
 
@@ -112,11 +116,11 @@ func attempt_player_move(dir: Vector2i) -> void:
 func spray() -> void:
 	if GameData.paint_bombs > 0:
 		GameData.paint_bombs -= 1
-		var spray = SPRAY.instantiate()
+		var spray_node = SPRAY.instantiate()
 		var angle = GameData.get_mouse_dir()
-		spray.position = GameData.go_to(GameData.player_pos)
-		spray.rotation = angle
-		effect_lib.add_child(spray)
+		spray_node.position = GameData.go_to(GameData.player_pos)
+		spray_node.rotation = angle
+		effect_lib.add_child(spray_node)
 		var hit_array = get_hit_cells(GameData.player_pos, angle, 3, deg_to_rad(60.0))
 		for pos in hit_array:
 			GameData.change_panel(pos, 1, 1)
@@ -130,7 +134,6 @@ func spray() -> void:
 ## HELPER for spray
 func get_hit_cells(origin: Vector2i, target_angle: float, range_dist: float, spread: float) -> Array[Vector2i]:
 	var hit_cells: Array[Vector2i] = []
-	var range_sq = range_dist * range_dist
 	
 	var min_x = int(origin.x - range_dist)
 	var max_x = int(origin.x + range_dist)

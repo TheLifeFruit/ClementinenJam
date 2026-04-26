@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkb6sjveiwnah"]
 
-[ext_resource type="Texture2D" uid="uid://c8oxxuqac3w8g" path="res://images/bottle.png" id="1_5x15c"]
+[ext_resource type="Texture2D" uid="uid://ccqr2f2tp4270" path="res://images/bottle.png" id="1_5x15c"]
 [ext_resource type="Script" uid="uid://hf53vm1t84qr" path="res://PowerUps/light_bomb.gd" id="2_b2k2g"]
 
 [node name="Sprite2D" type="Sprite2D" unique_id=375466868]

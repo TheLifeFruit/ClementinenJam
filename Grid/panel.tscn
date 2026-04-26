@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://djf3bkxpbavi6"]
 
+[ext_resource type="Material" uid="uid://dv1cao6e8ncg1" path="res://UI/ui_mat.tres" id="1_qxv0b"]
 [ext_resource type="Script" uid="uid://648j85f5rl7x" path="res://Grid/grid_panel.gd" id="1_y4mqa"]
 
 [node name="Panel" type="PanelContainer" unique_id=921559086]
+material = ExtResource("1_qxv0b")
 custom_minimum_size = Vector2(64, 64)
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +20,7 @@ size_flags_vertical = 3
 script = ExtResource("1_y4mqa")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1433075683]
+material = ExtResource("1_qxv0b")
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)

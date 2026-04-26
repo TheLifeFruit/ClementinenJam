@@ -7,6 +7,10 @@ var wait: int = 7
 func _ready() -> void:
 	super() # Generates UUID from base class
 	
+
+	type = "monster_beam"
+
+
 func _on_tick() -> void:
 		var dif: Vector2i = GameData.player_pos - grid_pos
 		if total_moves >= 0:

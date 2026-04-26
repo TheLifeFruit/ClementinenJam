@@ -8,11 +8,18 @@ signal player_move()
 
 signal rebuild_player_grid()
 
-signal currency_changed()
+signal currency_changed(delta_currency: float)
 
 signal percentage_changed(new_percentage: float)
 
+
 signal player_damage()
+
+signal bomb_amount_changed()
+
+signal yin_yang_changed()
+
+signal reset_grid()
 
 signal game_over()
 
