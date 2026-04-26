@@ -24,6 +24,11 @@ func remove(dmg_type: int = 0) -> void:
 	if type == "object" and dmg_type < 2:
 		return
 	
+	if type == "monster_beam":
+		SoundManager.play_gore2()
+	else:
+		SoundManager.play_gore1()
+	
 	
 	GameData.occupation_data.erase(grid_pos)
 	SignalManager.game_over.disconnect(remove)

@@ -12,6 +12,8 @@ signal currency_changed(delta_currency: float)
 
 signal percentage_changed(new_percentage: float)
 
+signal bomb_amount_changed()
+
 signal game_over()
 
 signal new_game()

@@ -37,6 +37,13 @@ func play_powerup_sound3() -> void:
 func play_refresh_player_grid() -> void:
 	play_sfx(refresh_player_grid, 0.1)
 
+func play_gore1() -> void:
+	play_sfx(gore1, 0.1)
+
+func play_gore2() -> void:
+	play_sfx(gore2, 0.1)
+
+
 
 func play_sfx(stream: AudioStream, pitch_variance: float = 0.0):
 	var player = pool[next_player]

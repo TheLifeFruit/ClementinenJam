@@ -7,6 +7,7 @@ var wait: int = 7
 func _ready() -> void:
 	super() # Generates UUID from base class
 	
+	type = "monster_beam"
 	dir = randi_range(0, 3)
 	var pos = randi_range(-spawn_width, spawn_width)
 	

@@ -163,6 +163,7 @@ text = "Perc"
 label_settings = SubResource("LabelSettings_036b0")
 
 [node name="UseAmountLabel" type="Label" parent="UI-LAYER/UI" unique_id=1737706491]
+unique_name_in_owner = true
 material = ExtResource("5_wse8f")
 use_parent_material = true
 layout_mode = 0

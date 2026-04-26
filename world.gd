@@ -51,7 +51,7 @@ func game_over() -> void:
 
 func money_payout(increase: float) -> void:
 	GameData.player_currency += increase
-	SignalManager.currency_changed.emit(increase)
+	SignalManager.currency_changed.emit()
 
 
 
