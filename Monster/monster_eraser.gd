@@ -4,10 +4,11 @@ var spawn_width: int = 5
 
 var total_moves: int = 15
 var wait: int = 7
+
 func _ready() -> void:
 	super() # Generates UUID from base class
 	
-	type = "monster_beam"
+	type = "monster_eraser"
 	dir = randi_range(0, 3)
 	var pos = randi_range(-spawn_width, spawn_width)
 	
@@ -20,8 +21,10 @@ func _ready() -> void:
 		grid_pos = GameData.player_pos + Vector2i(pos, -OUT_Y)
 	else:
 		grid_pos = GameData.player_pos + Vector2i(OUT_X, pos)
-
+	
 	rotation = turn_by_int(dir)
+
+
 
 func _on_tick() -> void:
 		var dif: Vector2i = GameData.player_pos - grid_pos
@@ -53,7 +56,9 @@ func _on_tick() -> void:
 		need_delete()
 
 func _custom_move(move_vector: Vector2i) -> void:
+	# Update rotation if direction changed in a previous failed move
 	rotation = turn_by_int(dir)
+	
 	var target_pos: Vector2i = grid_pos + move_vector
 
 	if GameData.request_move(grid_pos, target_pos, self):
@@ -61,8 +66,9 @@ func _custom_move(move_vector: Vector2i) -> void:
 		GameData.grid_data.change_panel_state(grid_pos, 0)
 		position = GameData.go_to(grid_pos)    
 	else:
-		# Pick new direction if blocked
+		# Bounce / pick new direction on failure
 		dir = randi_range(0, 3)
+
 
 func need_delete() -> void:
 	if abs(grid_pos.x - GameData.player_pos.x) > OUT_X * 1.5 or abs(grid_pos.y - GameData.player_pos.y) > OUT_Y * 1.5:

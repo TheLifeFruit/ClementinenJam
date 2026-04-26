@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://duq64anvol0n3"]
 
+[ext_resource type="Material" uid="uid://dv1cao6e8ncg1" path="res://UI/ui_mat.tres" id="1_7vmp2"]
 [ext_resource type="Script" uid="uid://ddmrx6xwoo0j0" path="res://Grid/grid.gd" id="1_ebq2e"]
 
 [node name="PanelContainer" type="PanelContainer" unique_id=943626468]
+material = ExtResource("1_7vmp2")
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_ebq2e")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=91279859]
+material = ExtResource("1_7vmp2")
 layout_mode = 2
 mouse_filter = 2
 
 [node name="Grid" type="GridContainer" parent="MarginContainer" unique_id=864178152]
+material = ExtResource("1_7vmp2")
 layout_mode = 2
 mouse_filter = 2
 columns = 17

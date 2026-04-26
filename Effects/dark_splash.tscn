@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dx5a4o6vldwy2"]
+
+[ext_resource type="Texture2D" uid="uid://uim8qp3qyxip" path="res://UI/light_player.png" id="1_l5auf"]
+[ext_resource type="Script" uid="uid://doaysw2pora67" path="res://Effects/dark_splash.gd" id="2_4ktfm"]
+
+[sub_resource type="Curve" id="Curve_a8lfm"]
+_data = [Vector2(0.1693989, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.22264159), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b7mc8"]
+curve = SubResource("Curve_a8lfm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ktfm"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 48.4
+gravity = Vector3(0, 0, 0)
+color = Color(0, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_b7mc8")
+
+[node name="splash" type="GPUParticles2D" unique_id=79312303]
+emitting = false
+amount = 4
+texture = ExtResource("1_l5auf")
+lifetime = 0.66
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4ktfm")
+script = ExtResource("2_4ktfm")

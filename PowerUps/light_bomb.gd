@@ -1,17 +1,13 @@
-extends Sprite2D
+extends power_up
 
-var grid_pos = Vector2i.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	SignalManager.player_move.connect(process_modi)
 	Clock.tick.connect(check_onit)
 	
-	var len = GameData.player_grid.size()
-	var rand = randi_range(0,len)
-	grid_pos = GameData.player_grid.keys().pick_random()
-	position = GameData.go_to(grid_pos)
 	
 	
 
@@ -26,4 +22,5 @@ func process_modi():
 	if grid_pos == GameData.player_pos:
 		GameData.paint_bombs += 1
 		SoundManager.play_powerup_sound1()
+		SignalManager.bomb_amount_changed.emit()
 		self.queue_free()

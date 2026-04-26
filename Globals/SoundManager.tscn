@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://du5l0flkfc2fg" path="res://Audio/mixkit-unlock-game-notification-253.wav" id="3_b56xi"]
 [ext_resource type="AudioStream" uid="uid://bcul4xfuyapej" path="res://Audio/mixkit-extra-bonus-in-a-video-game-2045.wav" id="4_xvmwu"]
 [ext_resource type="AudioStream" uid="uid://bt4roxo6twvqx" path="res://Audio/mixkit-video-game-health-recharge-2837.wav" id="5_a4hjl"]
+[ext_resource type="AudioStream" uid="uid://buurrwmrusj8o" path="res://Audio/universfield-game-bonus-03-487857.mp3" id="5_b56xi"]
 [ext_resource type="AudioStream" uid="uid://d284kvobqq3te" path="res://Audio/3643.wav" id="6_kfbvy"]
 [ext_resource type="AudioStream" uid="uid://beqrklffyod3" path="res://Audio/mixkit-video-game-blood-pop-2361.wav" id="7_dtlnl"]
 
@@ -13,6 +14,7 @@ script = ExtResource("1_gf184")
 powerup_sound1 = ExtResource("2_yhx1y")
 powerup_sound2 = ExtResource("3_b56xi")
 powerup_sound3 = ExtResource("4_xvmwu")
+powerup_sound4 = ExtResource("5_b56xi")
 refresh_player_grid = ExtResource("5_a4hjl")
 gore1 = ExtResource("6_kfbvy")
 gore2 = ExtResource("7_dtlnl")

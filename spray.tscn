@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://v7rxxnrtb06r"]
 
 [ext_resource type="Script" uid="uid://dyu61ybu10vmq" path="res://Monster/spray.gd" id="1_widnf"]
+[ext_resource type="Texture2D" uid="uid://uim8qp3qyxip" path="res://UI/light_player.png" id="2_stwbq"]
+[ext_resource type="Material" uid="uid://b7yd56f4732y2" path="res://Effects/splash.tres" id="3_a8lfm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x8ayh"]
 
@@ -10,16 +12,27 @@ spread = 20.0
 initial_velocity_min = 214.68
 initial_velocity_max = 265.32
 gravity = Vector3(0, 0, 0)
-damping_min = 170.00002
+damping_min = 100.00001
 damping_max = 310.0
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
 
 [node name="Spray" type="GPUParticles2D" unique_id=94177985]
 material = SubResource("CanvasItemMaterial_x8ayh")
 emitting = false
+sub_emitter = NodePath("splash")
+lifetime = 0.5
 one_shot = true
-speed_scale = 2.94
+speed_scale = 4.0
 explosiveness = 0.85
 randomness = 0.33
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_the3v")
 script = ExtResource("1_widnf")
+
+[node name="splash" type="GPUParticles2D" parent="." unique_id=449537507]
+emitting = false
+amount = 4
+texture = ExtResource("2_stwbq")
+lifetime = 1.3800000000000001
+process_material = ExtResource("3_a8lfm")

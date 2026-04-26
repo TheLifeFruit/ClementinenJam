@@ -10,7 +10,7 @@ func get_panel_state(grid_pos: Vector2i) -> int:
 	if not panel_grid.has(grid_pos):
 		panel_grid[grid_pos] = 0
 		return 0
-	
+	#print(panel_grid[grid_pos])
 	return panel_grid[grid_pos]
 	
 
