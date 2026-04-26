@@ -19,6 +19,20 @@ ambient_light_energy = 0.0
 reflected_light_source = 1
 fog_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_dwbse"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pkg7o"]
+gradient = SubResource("Gradient_dwbse")
+
+[sub_resource type="Gradient" id="Gradient_036b0"]
+colors = PackedColorArray(0.7921569, 0.08627451, 0.101960786, 1, 0.1527932, 0.415456, 0.085530825, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dwbse"]
+gradient = SubResource("Gradient_036b0")
+width = 50
+height = 50
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_036b0"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -34,20 +48,6 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-
-[sub_resource type="Gradient" id="Gradient_dwbse"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_pkg7o"]
-gradient = SubResource("Gradient_dwbse")
-
-[sub_resource type="Gradient" id="Gradient_036b0"]
-colors = PackedColorArray(0.7921569, 0.08627451, 0.101960786, 1, 0.1527932, 0.415456, 0.085530825, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dwbse"]
-gradient = SubResource("Gradient_036b0")
-width = 50
-height = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_k3n1d"]
 font = ExtResource("6_gbfbk")
@@ -124,7 +124,21 @@ offset_right = 1152.0
 offset_bottom = 648.0
 script = ExtResource("5_036b0")
 
+[node name="PercentageBar" type="TextureProgressBar" parent="UI-LAYER/UI" unique_id=155084043]
+unique_name_in_owner = true
+material = ExtResource("5_wse8f")
+use_parent_material = true
+layout_mode = 0
+offset_top = -2.0
+offset_right = 1152.0
+offset_bottom = 71.0
+size_flags_vertical = 8
+value = 100.0
+texture_under = SubResource("GradientTexture1D_pkg7o")
+texture_progress = SubResource("GradientTexture2D_dwbse")
+
 [node name="PanelContainer" type="PanelContainer" parent="UI-LAYER/UI" unique_id=2121349617]
+visible = false
 material = ExtResource("5_wse8f")
 use_parent_material = true
 custom_minimum_size = Vector2(100, 10)
@@ -138,16 +152,6 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_036b0")
-
-[node name="PercentageBar" type="TextureProgressBar" parent="UI-LAYER/UI/PanelContainer" unique_id=155084043]
-unique_name_in_owner = true
-material = ExtResource("5_wse8f")
-use_parent_material = true
-layout_mode = 2
-size_flags_vertical = 8
-value = 100.0
-texture_under = SubResource("GradientTexture1D_pkg7o")
-texture_progress = SubResource("GradientTexture2D_dwbse")
 
 [node name="CurrencyLabel" type="Label" parent="UI-LAYER/UI" unique_id=1214226711]
 unique_name_in_owner = true

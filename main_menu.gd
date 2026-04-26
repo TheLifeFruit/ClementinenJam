@@ -6,8 +6,8 @@ func display():
 	var score = Clock.current_tick
 	if highscore < score:
 		highscore = score
-	$Control/HBoxContainer/Score.text =str(score)
-	$Control/HBoxContainer/Highscore.text = str(highscore)
+	$Control/HBoxContainer/Score.text ="Score " + str(score)
+	$Control/HBoxContainer/Highscore.text ="Highscore " + str(highscore)
 
 func _on_new_game_pressed() -> void:
 	SignalManager.new_game.emit()
