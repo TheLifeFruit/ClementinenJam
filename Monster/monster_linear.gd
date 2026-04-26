@@ -5,6 +5,7 @@ func _ready() -> void:
 
 
 func _on_tick() -> void:
+	await get_tree().create_timer(clock_offset).timeout
 	# dirs array inherited from 'body' automatically translates int to Vector2i
 	_custom_move(dirs[dir])
 	
