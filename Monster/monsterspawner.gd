@@ -202,8 +202,9 @@ func _on_tick() -> void:
 		return
 	
 	
-	if Clock.current_tick % 16 == 0:
+	if Clock.current_tick % 11 == 0:
 		var mob_value = get_mob_value(GameData.wave_cycle)
+		mob_value = mob_value / 3
 		while (mob_value > 0 ) :
 			var type = get_random_mob_type()
 			mob_value -= mob_cost[type]
@@ -214,8 +215,8 @@ func _on_tick() -> void:
 			spawn_yin()
 		elif not GameData.power_ups["yang"]:
 			spawn_yang()
-	if Clock.current_tick % 20 == 0:
-		if randf_range(0, 1) > 0.84:
+	if Clock.current_tick % 3 == 0:
+		if randf_range(0, 1) > 0.64:
 			power_up_spawn("light_bomb")
 		
 		

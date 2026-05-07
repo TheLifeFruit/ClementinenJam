@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		_time_accumulator -= time_between_ticks
 		_fire_tick()
 	
-	ticks_per_second =2 + current_tick/ 50
+	ticks_per_second =2
 
 func _fire_tick() -> void:
 	current_tick += 1

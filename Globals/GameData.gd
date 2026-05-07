@@ -37,7 +37,7 @@ var yin: bool = false
 var yang: bool = false
 
 
-var game_over_perc: float = 0.25
+var game_over_perc: float = 0.01
 
 var wave_cycle: int = 0
 var max_clock_offset: float = 0.3

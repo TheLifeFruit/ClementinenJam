@@ -9,9 +9,10 @@ const SPRAY = preload("res://spray.tscn")
 @onready var grid: Node2D = %Grid
 @onready var offset: Node2D = $Offset
 
-
+var g_over: bool = false
 
 func _ready() -> void:
+	g_over = false
 	var grid_node = GameData.GRID.instantiate()
 	GameData.grid_node = grid_node
 	grid.add_child(grid_node)
@@ -22,6 +23,7 @@ func _ready() -> void:
 	add_child(main_menu)
 
 func reset_all():
+	g_over = false
 	GameData.player_grid = {}
 	GameData.player_field = [1,7,5,11]
 	GameData.grid_data = GridData.new()
@@ -48,6 +50,7 @@ func reset_all():
 	SignalManager.percentage_changed.emit()
 	
 func new_game() -> void:
+	g_over = false
 	reset_all()
 	GameData.set_start_square(3, GameData.player_pos)
 	
@@ -80,6 +83,7 @@ func cycle() -> void:
 
 
 func game_over() -> void:
+	g_over = true
 	printerr("GAME OVER")
 	var game_over_screen = MAIN_MENU.instantiate()
 	add_child(game_over_screen)
@@ -94,6 +98,8 @@ func money_payout(increase: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if g_over:
+		return
 	if event.is_action_pressed("DOWN"):
 		attempt_player_move(Vector2i(0, -1))
 	if event.is_action_pressed("UP"):
